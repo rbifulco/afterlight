@@ -16,7 +16,7 @@ npm run build
 npm run serve
 ```
 
-The production server binds `0.0.0.0:4173`. The current local-network address is **http://192.168.1.214:4173**. Open it from another device on the same network while this Mac is awake. The detached process logs to `.dream-loop/server.log`; its PID is in `.dream-loop/server.pid`. Restart with `npm run serve` after a reboot. Development: `npm run dev` on port 5173.
+The production server binds `0.0.0.0:4173`. Open `http://<this-Mac-LAN-IP>:4173` from another device on the same network while this Mac is awake. The detached process logs to `.dream-loop/server.log`; its PID is in `.dream-loop/server.pid`. Restart with `npm run serve` after a reboot. Development: `npm run dev` on port 5173.
 
 Requires Node.js 20.19+ or 22.12+; built with Node 24.
 
@@ -28,7 +28,7 @@ There are no action panels, floating hotspots, pickup counters, advertising hack
 
 ## Neighborhood life
 
-- Thirteen independently animated residents: six pedestrians on pavement routes, three seated diners, a cook, a technician, and two neighbors sheltering together. Pedestrians pause along their routes and yield when the courier is close. Civilians have their own original face/cap model, clothing colors, gait timing, and gestures.
+- Eight independently animated residents: three pedestrians on pavement routes, two seated diners, a cook, a technician, and a neighbor sheltering from the rain. Pedestrians pause along their routes and yield when the courier is close. Original skinned models have short jackets, hooded coats, or a kitchen apron, with individual clothing colors, gait timing, and gestures.
 - Diners raise cups, the cook stirs, and the repair arm runs an ongoing alignment/inspection sequence beside the technician.
 - Traffic approaches from the distance and turns into the service alley. The parked taxi sweeps its windshield intermittently; the elevated train brings moving light through the street.
 - Pleated noren, laundry, and curtains move in the wind. Four upper rooms contain subtle moving silhouettes and changing light.
@@ -48,8 +48,7 @@ Sources and image-generation prompts: [docs/ASSETS.md](docs/ASSETS.md). Rebuild 
 ```sh
 /Applications/Blender.app/Contents/MacOS/Blender --background --factory-startup --python scripts/build-vehicles.py
 /Applications/Blender.app/Contents/MacOS/Blender --background --factory-startup --python scripts/build-scooter.py
-/Applications/Blender.app/Contents/MacOS/Blender --background --factory-startup --python scripts/build-courier.py
-/Applications/Blender.app/Contents/MacOS/Blender --background --factory-startup --python scripts/build-resident.py
+/Applications/Blender.app/Contents/MacOS/Blender --background --factory-startup --python scripts/build-humans.py
 /Applications/Blender.app/Contents/MacOS/Blender --background --factory-startup --python scripts/build-android.py
 ```
 
@@ -57,4 +56,4 @@ Sources and image-generation prompts: [docs/ASSETS.md](docs/ASSETS.md). Rebuild 
 
 `npm test` checks navigation around vehicle footprints, reachability between clear street destinations, and rejection of blocked destinations. Browser/LAN evidence is recorded in [docs/VALIDATION.md](docs/VALIDATION.md).
 
-Resident body meshes share instanced draws while each character keeps independent joint transforms. Rain, kitchen vapor, runoff, and vent plumes use GPU animation; static geometry is grouped by material. The wet road uses a bounded planar reflection, and metals/glass use an environment captured from the actual city. High quality adds half-resolution ambient occlusion for close views. Frame rate depends on device, viewport, browser, and other running applications.
+Residents use continuous skinned surfaces and independent skeletons. Rigid vehicle and android parts are combined by material while transparent glazing stays separate. Rain, kitchen vapor, runoff, and vent plumes use GPU animation; static geometry is grouped by material. Static hologram artwork is uploaded once while scan lines and distortion animate on the GPU. Native-resolution rendering uses FXAA to smooth edges. The wet road uses a 768px planar reflection (512px in light mode), and metals/glass use an environment captured from the actual city. High quality adds half-resolution ambient occlusion for close views. Frame rate depends on device, viewport, browser, and other running applications.

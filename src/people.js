@@ -1,14 +1,15 @@
 import * as THREE from 'three';
+import { clone as cloneSkeleton } from 'three/addons/utils/SkeletonUtils.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
-// One articulated source, instanced across the neighborhood. Each resident keeps
-// independent joint transforms without multiplying the number of mesh draws.
+// Softly skinned clothing and role-specific silhouettes. Each resident has a
+// cloned skeleton so seated poses and elbows deform continuously.
 export function buildPeople(scene,source){
-  const actors=[],templates=[];
-  source.traverse(o=>{if(o.isMesh)templates.push(o)});
+  const actors=[];
   const names=['body','leg_L','leg_R','knee_L','knee_R','arm_L','arm_R','elbow_L','elbow_R','tail_L','tail_R','head'];
   function resident(id,x,z,angle,color,role,route=null,umbrella=false,offset=0){
-    const rig=source.clone(true),meshes=[],joints={};rig.traverse(o=>{if(o.isMesh)meshes.push(o)});
+    const template=role==='cook'?source.apron:umbrella?source.coat:source.jacket;
+    const rig=cloneSkeleton(template),meshes=[],joints={};rig.traverse(o=>{if(o.isMesh){o.material=o.material.clone();o.castShadow=true;o.receiveShadow=true;o.frustumCulled=false;if(o.material.name.startsWith('Waxed petrol cotton'))o.material.color.multiply(new THREE.Color(color));meshes.push(o)}});scene.add(rig);
     for(const name of names)joints[name]=rig.getObjectByName(name);
     const scale=role==='cook'?1.04:.95+(actors.length%4)*.035;
     rig.scale.setScalar(scale);rig.position.set(x,role==='patron'?-.08:.28,z);rig.rotation.y=angle;
@@ -18,27 +19,13 @@ export function buildPeople(scene,source){
   }
   resident('tea regular',-15.55,1.96,Math.PI,0x8b7862,'patron',null,false,2);
   resident('late supper',-11.8,1.96,Math.PI,0x656b7a,'patron',null,false,7);
-  resident('night nurse',-14.30,1.96,Math.PI+.12,0x637a73,'patron',null,false,11);
   resident('cook',-13.90,-.35,0,0xbdb5a0,'cook');
   resident('technician',9.8,-1.22,-.65,0x8a7663,'repair');
   resident('waiting neighbor',11.15,.70,-.5,0x5b6d69,'talk',null,true,3);
-  resident('neighbor',12.02,.55,-1.9,0x867079,'talk',null,false,8);
   resident('west pavement',-7.05,-8,0,0x746d62,'walk',[[-7.05,-13],[-7.05,-6.3],[-8.1,3.65],[-10.4,3.70],[-8.1,3.65],[-7.05,-6.3]],true,0);
   resident('east pavement',7.95,-8,0,0x697a89,'walk',[[7.05,-17],[7.05,-5.8],[8.1,1.9],[14.7,2.6],[8.1,1.9],[7.05,-5.8]],true,9);
-  resident('corner umbrella',-20.4,3.25,0,0x74636c,'walk',[[-20.4,3.25],[-19.8,3.28],[-19.8,1.8],[-20.6,1.8]],true,3);
-  resident('east neighbor',19.3,2.4,0,0x657578,'walk',[[19.3,2.4],[19.6,-2.8],[19.6,1.8],[18.3,2.6]],true,0);
   resident('late commuter',-7.05,-22,0,0x8b7964,'walk',[[-7.05,-30],[-7.05,-18],[-7.05,-12],[-7.05,-18]],false,5);
-  resident('delivery worker',7.05,-25,0,0x71746a,'walk',[[7.05,-32],[7.05,-23],[7.05,-20],[7.05,-23]],false,2);
 
-  const instances=templates.map((template,index)=>{
-    const material=template.material.clone();
-    // The civilian's wrist display and pack stay dark; coats carry muted variation.
-    if(material.name.includes('indicators')){material.emissiveIntensity=.15;material.color.setHex(0x50656b)}
-    const instance=new THREE.InstancedMesh(template.geometry,material,actors.length);
-    instance.castShadow=true;instance.receiveShadow=true;instance.frustumCulled=false;instance.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-    actors.forEach((a,i)=>instance.setColorAt(i,material.name==='Waxed petrol cotton'?a.color:material.name==='Face in hood shadow'?new THREE.Color().setHSL(.06,.18,.58+(i%4)*.10):new THREE.Color(1,1,1)));
-    scene.add(instance);return {instance,index};
-  });
   // Curved, ribbed fabric umbrellas: dark wet canvas with one lighter gore.
   const umbrellaGeo=new THREE.SphereGeometry(.93,24,8,0,Math.PI*2,0,Math.PI*.42);umbrellaGeo.scale(1,.38,1);
   const umbrellaMat=new THREE.MeshStandardMaterial({color:0x788387,metalness:.12,roughness:.38,side:THREE.DoubleSide});
@@ -98,16 +85,15 @@ export function buildPeople(scene,source){
       j.tail_L.rotation.x=.045+Math.sin(phase*.8)*.035+a.speed*.09;j.tail_R.rotation.x=.045+Math.sin(phase*.8+.8)*.035+a.speed*.09;
       rig.updateMatrixWorld(true);
     }
-    for(const {instance,index} of instances){actors.forEach((a,i)=>instance.setMatrixAt(i,a.meshes[index].matrixWorld));instance.instanceMatrix.needsUpdate=true;}
     actors.forEach((a,i)=>{
       if(!a.umbrella){umbrellas.setMatrixAt(i,zero);ribs.setMatrixAt(i,zero);return;}
-      dummy.position.copy(a.rig.position);dummy.position.y+=2.08*a.scale;dummy.position.x+=.16;
+      dummy.position.set(0,-.35,.025).applyMatrix4(a.joints.elbow_R.matrixWorld);dummy.position.y+=.80*a.scale;
       dummy.rotation.set(Math.sin(t*.6+a.offset)*.025,0,-.06+Math.sin(t*.4+a.offset)*.025);dummy.scale.setScalar(a.scale);dummy.updateMatrix();
       umbrellas.setMatrixAt(i,dummy.matrix);ribs.setMatrixAt(i,dummy.matrix);umbrellas.setColorAt(i,a.color);
     });umbrellas.instanceMatrix.needsUpdate=true;ribs.instanceMatrix.needsUpdate=true;umbrellas.instanceColor.needsUpdate=true;
-    for(const {a,cup} of cups){dummy.position.set(0,-.36,.14);dummy.rotation.set(0,0,0);dummy.scale.setScalar(1);dummy.updateMatrix();cup.matrixAutoUpdate=false;cup.matrix.multiplyMatrices(a.joints.elbow_R.matrixWorld,dummy.matrix);}
-    const cook=actors.find(a=>a.role==='cook');dummy.position.set(0,-.38,.11);dummy.rotation.set(0,0,.4);dummy.updateMatrix();chopstick.matrixAutoUpdate=false;chopstick.matrix.multiplyMatrices(cook.joints.elbow_R.matrixWorld,dummy.matrix);
+    for(const {a,cup} of cups){dummy.position.set(0,-.35,.055);dummy.rotation.set(0,0,0);dummy.scale.setScalar(1);dummy.updateMatrix();cup.matrixAutoUpdate=false;cup.matrix.multiplyMatrices(a.joints.elbow_R.matrixWorld,dummy.matrix);}
+    const cook=actors.find(a=>a.role==='cook');dummy.position.set(0,-.35,.045);dummy.rotation.set(0,0,.4);dummy.updateMatrix();chopstick.matrixAutoUpdate=false;chopstick.matrix.multiplyMatrices(cook.joints.elbow_R.matrixWorld,dummy.matrix);
   }
   update(0,0);
-  return {update,get state(){return {count:actors.length,walkers:actors.filter(a=>a.route).map(a=>({id:a.id,x:a.rig.position.x,z:a.rig.position.z,distance:a.travel,paused:a.paused})),cookStir:actors[3].joints.elbow_R.rotation.x,patronSip:actors[0].joints.elbow_R.rotation.x}}};
+  return {update,get state(){return {count:actors.length,walkers:actors.filter(a=>a.route).map(a=>({id:a.id,x:a.rig.position.x,z:a.rig.position.z,distance:a.travel,paused:a.paused})),cookStir:actors.find(a=>a.role==='cook').joints.elbow_R.rotation.x,patronSip:actors[0].joints.elbow_R.rotation.x}}};
 }

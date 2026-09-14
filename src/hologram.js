@@ -46,7 +46,7 @@ export function createHolographicScreen(width,height,texture,color) {
   const beamMaterial=new THREE.ShaderMaterial({transparent:true,depthWrite:false,side:THREE.DoubleSide,blending:THREE.AdditiveBlending,toneMapped:false,
     uniforms:{tint:{value:tint},time:{value:0}},
     vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
-    fragmentShader:`uniform vec3 tint;uniform float time;varying vec2 vUv;void main(){float rays=.5+.5*pow(abs(sin(vUv.x*70.+time*.1)),12.);float alpha=pow(1.-vUv.y,1.6)*.055*rays;gl_FragColor=vec4(tint*1.4,alpha);}`});
+    fragmentShader:`uniform vec3 tint;uniform float time;varying vec2 vUv;void main(){float rays=.5+.5*pow(abs(sin(vUv.x*70.+time*.1)),12.);float alpha=pow(clamp(1.-vUv.y,0.,1.),1.6)*.055*rays;gl_FragColor=vec4(tint*1.4,alpha);}`});
   const beam=new THREE.Mesh(new THREE.CylinderGeometry(width*.53,.14,height*.96,32,1,true),beamMaterial);beam.scale.z=.12;beam.position.set(0,-height*.02,-.03);group.add(beam);
   const lineMaterial=new THREE.MeshBasicMaterial({color:tint,transparent:true,opacity:.60,blending:THREE.AdditiveBlending,depthWrite:false,toneMapped:false});
   const sweepLine=new THREE.Mesh(new THREE.PlaneGeometry(width*.98,.012),lineMaterial);sweepLine.position.z=.20;group.add(sweepLine);

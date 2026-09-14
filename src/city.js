@@ -18,9 +18,12 @@ export function buildCity(scene) {
  const cyl=(x,y,z,r,h,m=metal,rot)=>batch(cylinder,m,[x,y,z],[r,h,r],rot);
  function window(x,y,z,w,h,rot=0,lit=true){const near=z>-62;const g=batch(plane,lit?(near?windowMat:distantWindowMat):windowDark,[x,y,z],[w,h,1],[0,rot,0]);if(lit){const c=near?new THREE.Color(1,1,1).multiplyScalar(.75+rnd()*1.65):new THREE.Color().setHSL(rnd()<.7?.10:.54,.35,.14+rnd()*.26);if(near){const tile=Math.floor(rnd()*16),tx=tile%4,ty=Math.floor(tile/4),uv=g.attributes.uv;for(let i=0;i<uv.count;i++)uv.setXY(i,(uv.getX(i)*.96+.02+tx)/4,(uv.getY(i)*.96+.02+ty)/4)}const a=new Float32Array(g.attributes.position.count*3);for(let i=0;i<a.length;i+=3){a[i]=c.r;a[i+1]=c.g;a[i+2]=c.b}g.setAttribute('color',new THREE.BufferAttribute(a,3))}}
  function pipe(points,r=.055,m=metal){const path=new THREE.CatmullRomCurve3(points.map(p=>new THREE.Vector3(...p)));batch(new THREE.TubeGeometry(path,points.length*4,r,6,false),m,[0,0,0],[1,1,1])}
- function label(text,x,y,z,w,h,color='#5ef1ff',rot=0,bg='#091822',vertical=false){const c=document.createElement('canvas');c.width=vertical?256:1024;c.height=vertical?1024:256;const ctx=c.getContext('2d');ctx.fillStyle=bg;ctx.fillRect(0,0,c.width,c.height);ctx.strokeStyle=color;ctx.lineWidth=5;ctx.strokeRect(10,10,c.width-20,c.height-20);ctx.fillStyle=color;ctx.textAlign='center';ctx.textBaseline='middle';ctx.shadowBlur=10;ctx.shadowColor=color;
- if(vertical){ctx.font='bold 148px sans-serif';[...text].forEach((ch,i)=>ctx.fillText(ch,c.width/2,140+i*(720/Math.max(1,text.length-1))));ctx.font='25px monospace';ctx.fillText('NIGHT / 09',128,970)}else{ctx.font='bold 115px sans-serif';ctx.fillText(text,512,127,945)}
- const tex=new THREE.CanvasTexture(c);tex.colorSpace=THREE.SRGBColorSpace;const m=new THREE.MeshBasicMaterial({map:tex,toneMapped:false,color:new THREE.Color(1.3,1.3,1.3)});const mesh=new THREE.Mesh(plane,m);mesh.position.set(x,y,z);mesh.scale.set(w,h,1);mesh.rotation.y=rot;scene.add(mesh);return mesh}
+ function label(text,x,y,z,w,h,color='#5ef1ff',rot=0,bg='#091822',vertical=false){
+ const c=document.createElement('canvas');const density=Math.min(Math.max(256,64/Math.min(w,h)),2048/Math.max(w,h));c.width=Math.round(w*density);c.height=Math.round(h*density);const ctx=c.getContext('2d');ctx.fillStyle=bg;ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle=color;ctx.textAlign='center';ctx.textBaseline='middle';
+ const font="'Hiragino Sans','Noto Sans JP',sans-serif";
+ if(vertical){const chars=[...text],cell=c.height/(chars.length+.55),size=Math.min(c.width*.70,cell*.73);ctx.font=`600 ${size}px ${font}`;chars.forEach((ch,i)=>ctx.fillText(ch,c.width/2,cell*(i+.78)));}
+ else{let size=c.height*.57;ctx.font=`500 ${size}px ${font}`;size*=Math.min(1,c.width*.86/ctx.measureText(text).width);ctx.font=`500 ${size}px ${font}`;ctx.fillText(text,c.width/2,c.height*.51);}
+ const tex=new THREE.CanvasTexture(c);tex.colorSpace=THREE.SRGBColorSpace;tex.anisotropy=4;const m=new THREE.MeshBasicMaterial({map:tex,toneMapped:false,color:new THREE.Color(1.12,1.12,1.12)});const mesh=new THREE.Mesh(plane,m);mesh.position.set(x,y,z);mesh.scale.set(w,h,1);mesh.rotation.y=rot;scene.add(mesh);return mesh}
  function neonSign(text,x,y,z,w,h,color,vertical=false,rot=0){box(x,y,z-.11,w+.14,h+.14,.22,dark,[0,rot,0]);const s=label(text,x,y,z+.02,w,h,color,rot,'#07131c',vertical);s.material.color.setRGB(2.4,2.4,2.4);flickers.push(s);return s}
  function light(color,intensity,x,y,z,dist=15){const l=new THREE.PointLight(color,intensity,dist,2);l.position.set(x,y,z);scene.add(l);return l}
  // Sidewalk foundation blocks and continuous streets; open crossing centered at origin.
@@ -74,10 +77,10 @@ export function buildCity(scene) {
  pipe([[16.7,.4,-1.49],[16.7,6.0,-1.49],[15.5,6.5,-1.49],[13.8,6.5,-1.49]],.12,edge);
  for(let yy=1.2;yy<9;yy+=1.5)box(17.25,yy,-1.55,.37,.11,.32,edge);
  for(let j=0;j<3;j++){const xx=12.3+j*1.55;box(xx,8.0,-1.6,1.15,.65,.5,edge);for(let k=0;k<7;k++)box(xx,7.76+k*.073,-1.32,.98,.024,.035,dark)}
- neonSign('眠らない',-14,18.5,-16.37,7.6,1.6,'#f47cb9');label('SLEEP IS OPTIONAL',-14,17.4,-16.35,6,.5,'#b2c7cf');
+ neonSign('眠らない',-14,18.5,-16.37,7.6,1.6,'#f47cb9');
  // Dish antennas have distinct concave silhouettes.
  for(const [x,y,z]of[[-16,16.5,-7],[15,14,-12]]){cyl(x,y+.6,z,.045,1.2,metal);const dish=new THREE.SphereGeometry(.55,12,6,0,Math.PI*2,0,Math.PI*.42);batch(dish,edge,[x,y+1.2,z],[1,.4,1],[.45,0,.3]);pipe([[x,y+1.2,z],[x+.2,y+1.65,z+.3]],.025)}
- neonSign('終電',-17.4,12.0,1.65,1.2,2.8,'#eba85f',true);label('LAST TRAIN / 02:18',-13.3,12.0,1.64,4.6,.40,'#aabbbc');
+ neonSign('終電',-17.4,12.0,1.65,1.2,2.8,'#eba85f',true);label('終電 02:18',-13.3,12.0,1.64,4.6,.40,'#aabbbc');
  // Side streets expose larger flanking buildings rather than empty diorama edges.
  building(-30,-6,14,17,23,2,false);building(31,-5,14,18,27,3,false);
  for(let i=0;i<55;i++){const x=(rnd()-.5)*165,z=-65-rnd()*130,w=5+rnd()*12,d=6+rnd()*12,h=22+rnd()*65;box(x,h/2,z,w,h,d,concrete2);box(x,h+.3,z,w+.15,.6,d+.15,dark);if(i%3===0)box(x+w*.3,h+3,z,1.4,6,1.4,dark);
@@ -93,9 +96,9 @@ export function buildCity(scene) {
  // Hero signage and street identity.
  neonSign('深夜食堂',-8.5,8.4,1.62,1.35,6.1,'#ff3cac',true);
  neonSign('新世界',9.0,10.7,-1.85,1.6,7.5,'#50eaff',true);
- label('MIDNIGHT NOODLES',-13,3.65,1.73,7.4,.60,'#ffc888');label('OPEN 24H',-11.5,1.95,1.80,1.35,.32,'#ffdfa0');
- neonSign('HOTEL 09',-8.8,15,-17,2.1,1.05,'#ff587e');neonSign('通信',8,19,-21,1.4,4,'#38c9ed',true);
- label('AFTER HOURS',13,3.5,-1.8,6.4,.55,'#55e9e9');
+ label('深夜食堂',-13,3.65,1.73,3.0,.75,'#ffc888');label('営業中',-11.5,1.95,1.80,1.35,.32,'#ffdfa0');
+ neonSign('宿 09',-8.8,15,-17,2.1,1.05,'#ff587e');neonSign('通信',8,19,-21,1.4,4,'#38c9ed',true);
+ label('新世界修理店',13,3.5,-1.8,3.4,.75,'#55e9e9');
  light(0xffb467,85,-11,3.1,3.3,18);light(0xfc318f,180,-7.1,6.5,2,19);light(0x2ae0ff,210,7.5,7,-1.5,22);light(0xffbc71,60,10.0,2.8,-2.0,16);
  // Small lanterns, bins, traffic furniture and vending machines.
  for(let x=-16.5;x<-8;x+=3.4){cyl(x,2.5,2.85,.20,.48,shopGlow);cyl(x,2.76,2.85,.10,.12,dark);cyl(x,2.24,2.85,.13,.08,dark)}
@@ -116,7 +119,7 @@ export function buildCity(scene) {
  for(let x=-23;x<=23;x+=1.2){if(Math.abs(x)>8){for(let z=-.5;z<4;z+=1.2){box(x,.251,z,.018,.015,1.2,dark);box(x,.251,z,1.2,.015,.018,dark)}}}
  for(const [x,z]of[[-3.7,10],[4,-2]]){cyl(x,.033,z,.56,.022,metal);cyl(x,.045,z,.49,.02,dark);for(let i=-3;i<=3;i++)box(x+i*.12,.062,z,.035,.015,.72,metal)}
  // Wall posters and layered small signs, authored on canvas.
- label('NO SIGNAL',-15.2,5.35,1.59,1.8,.6,'#8bafae');label('09',-17.0,1.8,1.77,.6,.78,'#e0bfa5');label('REPAIR / 修理',13,2.8,-1.78,3,.35,'#ffd17f');
+ label('09',-17.0,1.8,1.77,.6,.78,'#e0bfa5');label('修理',13,2.8,-1.78,3,.35,'#ffd17f');
  neonSign('ラーメン',-18.1,2.0,2.15,.58,1.9,'#ffb669',true);neonSign('24',17.7,4.4,-1.77,.7,1.1,'#e563c7');
  // Metro viaduct, guardrails, sleepers, overhead wires.
  const trackZ=-23,trackY=16.2;box(0,trackY,trackZ,84,.85,4.4,concrete);box(0,trackY+.50,trackZ+2.16,84,.6,.22,edge);box(0,trackY+.50,trackZ-2.16,84,.6,.22,edge);
@@ -125,7 +128,7 @@ export function buildCity(scene) {
  for(let x=-42;x<42;x+=.8)box(x,trackY+.52,trackZ,.18,.12,2.2,dark);
  for(let x=-40;x<43;x+=2){box(x,trackY+1.07,trackZ+2.16,.035,.85,.035,metal);box(x,trackY+1.07,trackZ-2.16,.035,.85,.035,metal)}
  for(const z of [trackZ-2.16,trackZ+2.16])box(0,trackY+1.5,z,84,.05,.05,metal);
- label('K 7  /  LOWER LINE',-2,16.17,trackZ+2.24,7,.52,'#a3b8b7');
+ label('K7 下町線',-2,16.17,trackZ+2.24,7,.52,'#a3b8b7');
  const train=new THREE.Group();scene.add(train);const trainHull=new RoundedBoxGeometry(1,1,1,2,.055);const trainBody=material('trainBody',0x69858d,.32,.65);const trainRoomTex=texLoader.load('/assets/windows.png');trainRoomTex.colorSpace=THREE.SRGBColorSpace;trainRoomTex.repeat.set(.25,.25);trainRoomTex.offset.set(0,.75);const trainGlass=new THREE.MeshBasicMaterial({map:trainRoomTex,color:new THREE.Color(3,3,3)});
  function trainBox(x,y,z,w,h,d,m){const o=new THREE.Mesh(trainHull,m);o.position.set(x,y+6.2,z);o.scale.set(w,h,d);train.add(o);return o}
  for(let c=0;c<4;c++){const x=c*6.7;trainBox(x,11.65,trackZ,6.2,1.9,2.6,trainBody);trainBox(x,12.68,trackZ,6.1,.18,2.5,dark);trainBox(x,10.91,trackZ+1.32,6.1,.07,.06,cyan);for(let w=0;w<5;w++){trainBox(x-2.35+w*1.15,11.99,trackZ+1.31,.88,.77,.035,trainGlass);trainBox(x-2.35+w*1.15,11.99,trackZ-1.31,.88,.77,.035,trainGlass);trainBox(x-2.35+w*1.15,11.76,trackZ+1.35,.05,.55,.025,dark);trainBox(x-2.22+w*1.15,11.78,trackZ+1.35,.23,.33,.025,dark)}for(const side of [-1,1]){for(const dx of [-1.75,1.75]){trainBox(x+dx,11.54,trackZ+side*1.34,.55,1.68,.045,dark);trainBox(x+dx,11.94,trackZ+side*1.38,.39,.62,.03,trainGlass);trainBox(x+dx,11.08,trackZ+side*1.38,.4,.72,.03,trainBody);}trainBox(x,12.44,trackZ+side*1.34,5.9,.07,.035,edge);}trainBox(x+3.3,11.4,trackZ,.38,1.4,2.1,dark)}
@@ -143,11 +146,11 @@ export function buildCity(scene) {
  for(const [x,z]of[[7.3,3.5],[-7.3,-8]]){cyl(x,2,z,.065,4,metal);box(x,3.6,z,.38,1.0,.32,dark);for(let i=0;i<3;i++){const lamp=new THREE.Mesh(new THREE.SphereGeometry(.11,8,6),i===0?pink:i===1?gold:cyan);lamp.scale.z=.3;lamp.position.set(x,3.9-i*.3,z+.18);scene.add(lamp);moving.push(t=>lamp.visible=Math.floor(t/13)%3===i)}}
 
  light(0xf14947,28,4.1,.7,-21,8);light(0x34c8e9,55,-5,4,-39,16);
- neonSign('電脳',-6.9,6,-28,1.1,3.2,'#49dfee',true);neonSign('夜行',6.8,4.3,-36,1.2,2.8,'#ff547d',true);neonSign('OPEN',-6.8,3,-46,1.7,.6,'#ffb765');
+ neonSign('電脳',-6.9,6,-28,1.1,3.2,'#49dfee',true);neonSign('夜行',6.8,4.3,-36,1.2,2.8,'#ff547d',true);neonSign('営業中',-6.8,3,-46,1.7,.6,'#ffb765');
  // Distinctive skyline forms and big typographic media towers.
  box(-6,42,-95,13,84,10,concrete2);box(-6,86,-95,9,4,7,dark);box(-6,92,-95,.2,13,.2,metal);box(-12.3,51,-89.9,.12,57,.12,cyan);
- label('夢',-6,51,-89.88,7,9,'#56d9fc');label('DREAM / AGAIN',-6,44,-89.85,8,1.5,'#6bd7ea');label('2091',-6,69,-89.8,6,2,'#aec7d6');
- box(22,43,-105,17,86,16,concrete);box(22,88,-105,11,4,11,dark);box(22,92,-105,6,4,6,concrete2);label('HUMAN',22,62,-96.9,10,2,'#e852b2');label('STILL HERE',22,58,-96.9,11,1.3,'#e852b2');
+ label('夢',-6,51,-89.88,7,9,'#56d9fc');label('2091',-6,69,-89.8,6,2,'#aec7d6');
+ box(22,43,-105,17,86,16,concrete);box(22,88,-105,11,4,11,dark);box(22,92,-105,6,4,6,concrete2);
  for(let yy=5;yy<81;yy+=2.2)for(let xx=15;xx<30;xx+=1.3)if(rnd()>.35)window(xx,yy,-96.85,.38,.73,0,true);
  // Restaurant interior patrons are anonymous chunky silhouettes, not gameplay NPCs.
  for(const xx of [-15.4,-12.2,-10.4]){cyl(xx,1.12,1.79,.13,.55,dark);batch(new THREE.SphereGeometry(.115,8,6),dark,[xx,1.48,1.80],[1,1,1]);box(xx,.90,1.95,.40,.05,.14,wood)}

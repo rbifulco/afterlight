@@ -8,13 +8,13 @@ Original Blender 5.1.1 models, each reproducible from its Python source:
 
 | Asset | Source |
 |---|---|
-| `public/assets/courier.glb` | `scripts/build-courier.py`; tailored cloth silhouette, named body/arm/elbow/leg/knee/coat pivots |
+| `public/assets/courier.glb` | `scripts/build-humans.py`; continuous skinned coat, articulated skeleton, original head, gloves and shoes |
 | `public/assets/sedan.glb` | `scripts/build-vehicles.py`; shaped body with Boolean wheel arches, glass, cabin, rims, lights, and separate cargo lid |
 | `public/assets/service-van.glb` | `scripts/build-vehicles.py`; tall cargo shell, sliding panels, roof refrigeration and commercial fittings |
 | `public/assets/delivery-scooter.glb` | `scripts/build-scooter.py`; uses the vehicle modeling helpers |
 | `public/assets/service-android.glb` | `scripts/build-android.py`; exposed joints, actuators, armor, hands and optical sensors |
 
-City architecture, metro cars, shop interiors, screens, furniture, foliage, and utilities are original geometry in `src/city.js` and `src/street-life.js`. `src/people.js` poses and batches instances of the original courier for the background inhabitants.
+City architecture, metro cars, shop interiors, screens, furniture, foliage, and utilities are original geometry in `src/city.js` and `src/street-life.js`. `src/people.js` poses independent skinned civilian models for background inhabitants.
 
 Vehicle wear is applied as a low-amplitude height map in Three.js. It is deliberately not exported as a tangent-space normal map; interpreting the grayscale texture as normal vectors distorted the bodywork and was corrected during close-up review.
 
@@ -89,3 +89,11 @@ All eighteen original audio-generation prompts, API receipts and shipping-asset 
 ## Sites social preview
 
 `public/og.png` is an original generated sharing card derived from `.dream-loop/style-v4-round2.png`, preserving the actual city composition with AFTERLIGHT / DISTRICT 09 typography. It is link-preview artwork, not a validation screenshot.
+
+## People and signage revision — September 14, 2026
+
+`scripts/build-humans.py` now generates the courier and three civilian variants (`resident.glb`, `resident-coat.glb`, `resident-apron.glb`). These original Blender models replace rigid capped limb segments with joined cloth surfaces, blended skin weights, asymmetric idle posture, local folds, compact shoes, and separate gloves for the courier. The crowd is reduced to eight residents. Earlier courier/resident build scripts describe historical models and are superseded by `build-humans.py`.
+
+Sign canvases now match their world-space aspect ratio. Lettering fits uniformly without horizontal compression; oversized empty sign housings were shortened. Shop, route, and menu labels use contextual Japanese text. Decorative English slogans and redundant screens were removed. NOVA and KAEN advertising textures were edited with the image-generation tool to remove their English taglines while retaining the fictional brand and original product artwork. The v5 generated human reference was used only for comparison and is not included in the runtime.
+
+Rigid opaque surfaces are merged in model space without changing geometry placement. Hologram artwork is baked once; motion remains in the shader. The projection beam clamps its UV falloff before taking a fractional power, preventing invalid values from producing a black postprocessing rectangle.

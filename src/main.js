@@ -4,6 +4,8 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { SSAOPass } from 'three/addons/postprocessing/SSAOPass.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+import { FXAAShader } from 'three/addons/shaders/FXAAShader.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { Reflector } from 'three/addons/objects/Reflector.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -13,11 +15,12 @@ import { buildStreetLife } from './street-life.js';
 import { buildPeople } from './people.js';
 import { buildAtmosphere } from './atmosphere.js';
 import { createSoundscape } from './soundscape.js';
+import { batchStaticModel } from './static-model.js';
 import { createNavigation } from './navigation.js';
 addEventListener('unhandledrejection',()=>{document.querySelector('#loading').classList.remove('done');document.querySelector('#loading p').textContent='CITY CONNECTION INTERRUPTED';document.querySelector('#loading small').textContent='Refresh to reconnect to District 09.';});
 const canvas=document.querySelector('#world');
 const renderer=new THREE.WebGLRenderer({canvas,antialias:false,powerPreference:'high-performance'});
-renderer.setPixelRatio(Math.min(devicePixelRatio,1.25));renderer.setSize(innerWidth,innerHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio,1));renderer.setSize(innerWidth,innerHeight);
 renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 const scene=new THREE.Scene();scene.background=new THREE.Color(0x102536);scene.fog=new THREE.FogExp2(0x29465d,.011);
 const camera=new THREE.PerspectiveCamera(innerWidth/innerHeight<.8?76:43,innerWidth/innerHeight,.2,320);
@@ -28,10 +31,10 @@ const vehicles=await buildVehicles(scene);
 const streetLife=buildStreetLife(scene,city,vehicles);
 const atmosphere=buildAtmosphere(scene,city);
 const navigation=createNavigation([...vehicles.obstacles,...streetLife.obstacles]);
-const composer=new EffectComposer(renderer);composer.addPass(new RenderPass(scene,camera));const ssao=new SSAOPass(scene,camera,innerWidth/2,innerHeight/2,12);ssao.kernelRadius=1.5;ssao.minDistance=.0001;ssao.maxDistance=.018;const resizeAO=ssao.setSize.bind(ssao);ssao.setSize=(w,h)=>resizeAO(Math.round(w*.5),Math.round(h*.5));const renderAO=ssao.render.bind(ssao);ssao.render=(...args)=>{const previous=renderer.shadowMap.autoUpdate;renderer.shadowMap.autoUpdate=false;steam.visible=false;streetLife.setDepthPass(true);atmosphere.setDepthPass(true);try{return renderAO(...args)}finally{renderer.shadowMap.autoUpdate=previous;steam.visible=true;streetLife.setDepthPass(false);atmosphere.setDepthPass(false)}};composer.addPass(ssao);const bloom=new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),.30,.5,1.05);composer.addPass(bloom);composer.addPass(new OutputPass());
+const composer=new EffectComposer(renderer);composer.addPass(new RenderPass(scene,camera));const ssao=new SSAOPass(scene,camera,innerWidth/2,innerHeight/2,12);ssao.kernelRadius=1.5;ssao.minDistance=.0001;ssao.maxDistance=.018;const resizeAO=ssao.setSize.bind(ssao);ssao.setSize=(w,h)=>resizeAO(Math.round(w*.5),Math.round(h*.5));const renderAO=ssao.render.bind(ssao);ssao.render=(...args)=>{const previous=renderer.shadowMap.autoUpdate;renderer.shadowMap.autoUpdate=false;steam.visible=false;streetLife.setDepthPass(true);atmosphere.setDepthPass(true);try{return renderAO(...args)}finally{renderer.shadowMap.autoUpdate=previous;steam.visible=true;streetLife.setDepthPass(false);atmosphere.setDepthPass(false)}};composer.addPass(ssao);const bloom=new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),.30,.5,1.05);composer.addPass(bloom);composer.addPass(new OutputPass());const edgeSmoothing=new ShaderPass(FXAAShader);composer.addPass(edgeSmoothing);function resizeEdges(){const size=renderer.getDrawingBufferSize(new THREE.Vector2());edgeSmoothing.uniforms.resolution.value.set(1/size.x,1/size.y)}resizeEdges();
 THREE.DefaultLoadingManager.onError=url=>{document.querySelector('#loading').classList.remove('done');document.querySelector('#loading p').textContent='COULD NOT LOAD THE CITY';document.querySelector('#loading small').textContent='A local asset failed to load. Refresh to try again.';console.error('Asset load failed:',url)};const loader=new THREE.TextureLoader();const asphalt=await loader.loadAsync('/assets/asphalt.png');asphalt.wrapS=asphalt.wrapT=THREE.RepeatWrapping;asphalt.colorSpace=THREE.SRGBColorSpace;asphalt.anisotropy=4;
 // One low-resolution planar pass, distorted by original asphalt texture and moving ripples.
-const street=new Reflector(new THREE.PlaneGeometry(260,260),{textureWidth:1024,textureHeight:1024,multisample:0,clipBias:.003,color:0x23313b,shader:{
+const street=new Reflector(new THREE.PlaneGeometry(260,260),{textureWidth:768,textureHeight:768,multisample:0,clipBias:.003,color:0x23313b,shader:{
  uniforms:{tDiffuse:{value:null},color:{value:null},textureMatrix:{value:null},asphalt:{value:null},time:{value:0}},
  vertexShader:`uniform mat4 textureMatrix;varying vec4 vMirror;varying vec3 vWorld;void main(){vMirror=textureMatrix*vec4(position,1.);vWorld=(modelMatrix*vec4(position,1.)).xyz;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
  fragmentShader:`uniform sampler2D tDiffuse;uniform sampler2D asphalt;uniform float time;varying vec4 vMirror;varying vec3 vWorld;
@@ -65,14 +68,14 @@ const rippleGeo=new THREE.RingGeometry(.92,1,24);rippleGeo.rotateX(-Math.PI/2);c
 const splashGeo=new THREE.BufferGeometry(),splashP=new Float32Array(200*3);for(let i=0;i<200;i++)splashP.set([(Math.random()-.5)*14,.05,Math.random()*48-28],i*3);splashGeo.setAttribute('position',new THREE.BufferAttribute(splashP,3));const splashes=new THREE.Points(splashGeo,new THREE.PointsMaterial({color:0x82b2bf,size:.055,transparent:true,opacity:.35,depthWrite:false}));scene.add(splashes);
 const cloth=await loader.loadAsync('/assets/coat-fabric.png');cloth.colorSpace=THREE.SRGBColorSpace;cloth.anisotropy=4;
 const gltf=await new GLTFLoader().loadAsync('/assets/courier.glb');const character=new THREE.Group();character.add(gltf.scene);character.scale.setScalar(1.15);character.position.set(0,.03,5);character.rotation.y=Math.PI;scene.add(character);gltf.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true}});
-gltf.scene.traverse(o=>{if(o.isMesh&&o.material.name==='Waxed petrol cotton'){o.material.map=cloth;o.material.bumpMap=cloth;o.material.bumpScale=.007;o.material.color.setHex(0x80999b);}});
-const resident=await new GLTFLoader().loadAsync('/assets/resident.glb');
-resident.scene.traverse(o=>{if(o.isMesh&&o.material.name==='Waxed petrol cotton'){o.material.map=cloth;o.material.bumpMap=cloth;o.material.bumpScale=.006;o.material.color.setHex(0x9fa5a2)}});
-const people=buildPeople(scene,resident.scene);
+gltf.scene.traverse(o=>{if(o.isMesh&&o.material.name.startsWith('Waxed petrol cotton')){o.material.map=cloth;o.material.bumpMap=cloth;o.material.bumpScale=.007;o.material.color.setHex(0xb6c8c2);}});
+const residentModels=await Promise.all(['resident','resident-coat','resident-apron'].map(name=>new GLTFLoader().loadAsync(`/assets/${name}.glb`)));
+for(const resident of residentModels)resident.scene.traverse(o=>{if(o.isMesh&&o.material.name.startsWith('Waxed petrol cotton')){o.material.map=cloth;o.material.bumpMap=cloth;o.material.bumpScale=.004;o.material.color.setHex(0xaeb9b7)}});
+const people=buildPeople(scene,{jacket:residentModels[0].scene,coat:residentModels[1].scene,apron:residentModels[2].scene});
 const soundscape=createSoundscape();
-const android=await new GLTFLoader().loadAsync('/assets/service-android.glb');android.scene.traverse(o=>{if(o.isMesh&&o.material.name==='Porcelain alloy'){o.material.color.multiplyScalar(.45);o.material.roughness=.42;}});for(const [x,z,angle]of[[13.8,-1.25,.1]]){const model=android.scene.clone(true);model.position.set(x,.35,z);model.scale.setScalar(1.25);model.rotation.y=angle;model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true}});scene.add(model);}
-const joints={};for(const n of ['body','leg_L','leg_R','arm_L','arm_R','tail_L','tail_R','knee_L','knee_R','elbow_L','elbow_R'])joints[n]=gltf.scene.getObjectByName(n);
-const characterLight=new THREE.PointLight(0x75d4e7,3,3,2);characterLight.position.set(0,2.5,1.3);character.add(characterLight);
+const android=await new GLTFLoader().loadAsync('/assets/service-android.glb');android.scene.traverse(o=>{if(o.isMesh&&o.material.name==='Porcelain alloy'){o.material.color.multiplyScalar(.45);o.material.roughness=.42;}});for(const [x,z,angle]of[[13.8,-1.25,.1]]){const model=android.scene.clone(true);model.position.set(x,.35,z);model.scale.setScalar(1.25);model.rotation.y=angle;model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true}});batchStaticModel(model);scene.add(model);}
+const joints={};for(const n of ['head','body','leg_L','leg_R','arm_L','arm_R','tail_L','tail_R','knee_L','knee_R','elbow_L','elbow_R'])joints[n]=gltf.scene.getObjectByName(n);
+const characterLight=new THREE.PointLight(0xa3bbc6,2.6,3.5,2);characterLight.position.set(0,2.5,-1.3);character.add(characterLight);
 const target=character.position.clone(),velocity=new THREE.Vector3(),follow=new THREE.Vector3(0,5.3,-7);let yaw=.20,desiredYaw=.20,distance=30,desiredDistance=30,pitch=.16,desiredPitch=.16,dragging=false,pointerStart=null,lastX=0,lastY=0,walkPhase=0,moveCount=0,orbitCount=0,zoomCount=0;const walkEvidence={peakSpeed:0,maxLegSwing:0,lastHeading:Math.PI};
 let waypoints=[];
 function reset(){waypoints=[];desiredYaw=.20;desiredPitch=innerWidth<700?.25:.16;desiredDistance=innerWidth<700?48:30;target.set(0,.03,5);character.position.copy(target);velocity.set(0,0,0);follow.set(0,5.3,-7);}
@@ -89,21 +92,21 @@ let chromeTimer;
 function revealControls(){document.body.classList.remove('quiet');clearTimeout(chromeTimer);chromeTimer=setTimeout(()=>{if(!document.querySelector('nav').contains(document.activeElement))document.body.classList.add('quiet')},4500)}
 document.addEventListener('pointermove',revealControls,{passive:true});document.addEventListener('pointerdown',revealControls,{passive:true});document.addEventListener('focusin',revealControls);revealControls();
 document.addEventListener('keydown',e=>{if(e.key.toLowerCase()==='h')document.body.classList.toggle('clean');if(e.key.toLowerCase()==='r')reset();if(e.key==='Escape')document.body.classList.remove('clean')});
-let quality='HIGH';function setQuality(q){quality=q;ssao.enabled=q==='HIGH';const ratio=q==='HIGH'?Math.min(devicePixelRatio,1.25):1;renderer.setPixelRatio(ratio);composer.setPixelRatio(ratio);street.getRenderTarget().setSize(q==='HIGH'?1024:640,q==='HIGH'?1024:640);document.querySelector('#quality').textContent=q==='HIGH'?'Quality: high':'Quality: light';}
+let quality='HIGH';function setQuality(q){quality=q;ssao.enabled=q==='HIGH';const ratio=Math.min(devicePixelRatio,1);renderer.setPixelRatio(ratio);composer.setPixelRatio(ratio);resizeEdges();street.getRenderTarget().setSize(q==='HIGH'?768:512,q==='HIGH'?768:512);document.querySelector('#quality').textContent=q==='HIGH'?'Quality: high':'Quality: light';}
 if(matchMedia('(pointer:coarse)').matches){setQuality('PERFORMANCE');desiredDistance=distance=48;desiredPitch=pitch=.25;document.querySelector('#move-help').textContent='Tap to walk';document.querySelector('#zoom-help').textContent='Pinch to zoom'}
 if(innerWidth<700){desiredDistance=distance=48;desiredPitch=pitch=.25;}
 document.querySelector('#quality').onclick=()=>setQuality(quality==='HIGH'?'PERFORMANCE':'HIGH');
-addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.fov=camera.aspect<.8?76:43;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);composer.setSize(innerWidth,innerHeight)});
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.fov=camera.aspect<.8?76:43;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);composer.setSize(innerWidth,innerHeight);resizeEdges()});
 let last=performance.now(),elapsed=0,frames=0,fpsTime=last,averageFPS=0,frameTimes=[];
 const diagnostics=document.createElement('output');diagnostics.id='diagnostics';diagnostics.hidden=true;document.body.append(diagnostics);
 function frame(now){requestAnimationFrame(frame);const raw=(now-last)/1000,dt=Math.min(raw,.05);last=now;if(document.hidden)return;elapsed+=dt;const t=elapsed;
  const dx=target.x-character.position.x,dz=target.z-character.position.z,dist=Math.hypot(dx,dz);const speed=waypoints.length>1?2.9:Math.min(2.9,dist*3.0),factor=1-Math.exp(-dt*12);velocity.x=THREE.MathUtils.lerp(velocity.x,dist>.03?dx/dist*speed:0,factor);velocity.z=THREE.MathUtils.lerp(velocity.z,dist>.03?dz/dist*speed:0,factor);
  if(canWalk(character.position.x+velocity.x*dt,character.position.z+velocity.z*dt)){character.position.x+=velocity.x*dt;character.position.z+=velocity.z*dt}if(dist<.12&&waypoints.length>1){waypoints.shift();target.set(waypoints[0].x,.03,waypoints[0].z)}else if(dist<.025){character.position.copy(target);velocity.set(0,0,0);waypoints=[]}const moving=velocity.length();if(moving>.05){let angle=Math.atan2(velocity.x,velocity.z),delta=Math.atan2(Math.sin(angle-character.rotation.y),Math.cos(angle-character.rotation.y));character.rotation.y+=delta*(1-Math.exp(-dt*9))}
- walkPhase+=dt*moving*3.7;const gait=Math.min(moving/2.3,1);if(joints.body){joints.body.position.y=Math.sin(t*2)*.015+Math.abs(Math.sin(walkPhase))*.035*gait;joints.body.rotation.z=Math.sin(t*.85)*.014*(1-gait);}
- for(const [name,sign]of[['leg_L',1],['leg_R',-1]])if(joints[name])joints[name].rotation.x=Math.sin(walkPhase)*.53*gait*sign;
- for(const [name,sign]of[['knee_L',1],['knee_R',-1]])if(joints[name])joints[name].rotation.x=Math.max(0,-Math.sin(walkPhase)*sign)*.65*gait;
- for(const name of ['elbow_L','elbow_R'])if(joints[name])joints[name].rotation.x=-.16-gait*.12;
- for(const [name,sign]of[['arm_L',-1],['arm_R',1]])if(joints[name]){joints[name].rotation.x=Math.sin(walkPhase)*.38*gait*sign;joints[name].rotation.z=Math.sin(t*1.2)*.015}
+ walkPhase+=dt*moving*3.7;const gait=Math.min(moving/2.3,1);if(joints.body){joints.body.position.y=Math.sin(t*2)*.015+Math.abs(Math.sin(walkPhase))*.035*gait;joints.body.rotation.z=(.025+Math.sin(t*.85)*.008)*(1-gait);}
+ for(const [name,sign]of[['leg_L',1],['leg_R',-1]])if(joints[name]){joints[name].rotation.x=Math.sin(walkPhase)*.53*gait*sign+(1-gait)*(sign>0?.045:-.03);joints[name].rotation.y=(1-gait)*sign*.06;};
+ for(const [name,sign]of[['knee_L',1],['knee_R',-1]])if(joints[name])joints[name].rotation.x=Math.max(0,-Math.sin(walkPhase)*sign)*.65*gait+(1-gait)*(sign>0?.075:.025);
+ for(const name of ['elbow_L','elbow_R'])if(joints[name])joints[name].rotation.x=(name==='elbow_L'?-.20:-.38)*(1-gait)-gait*.28;
+ for(const [name,sign]of[['arm_L',-1],['arm_R',1]])if(joints[name]){joints[name].rotation.x=Math.sin(walkPhase)*.38*gait*sign+(1-gait)*(sign>0?-.16:-.065);joints[name].rotation.z=Math.sin(t*1.2)*.01+sign*.025}
  for(const [name,sign]of[['tail_L',-1],['tail_R',1]])if(joints[name])joints[name].rotation.x=.05+gait*.18+Math.sin(walkPhase+sign)*.09*gait+Math.sin(t*2+sign)*.025;
  yaw=THREE.MathUtils.lerp(yaw,desiredYaw,1-Math.exp(-dt*7));pitch=THREE.MathUtils.lerp(pitch,desiredPitch,1-Math.exp(-dt*7));distance=THREE.MathUtils.lerp(distance,desiredDistance,1-Math.exp(-dt*7));const closeFactor=THREE.MathUtils.clamp((distance-12)/26,0,1);const followTarget=new THREE.Vector3(character.position.x*.65,2.3+closeFactor*4.0,character.position.z*.55-2-closeFactor*7.25);follow.lerp(followTarget,1-Math.exp(-dt*1.8));camera.position.set(follow.x+Math.sin(yaw)*Math.cos(pitch)*distance,follow.y+Math.sin(pitch)*distance,follow.z+Math.cos(yaw)*Math.cos(pitch)*distance);camera.lookAt(follow);
  walkEvidence.peakSpeed=Math.max(walkEvidence.peakSpeed,moving);walkEvidence.maxLegSwing=Math.max(walkEvidence.maxLegSwing,Math.abs(joints.leg_L?.rotation.x||0));if(moving>1)walkEvidence.lastHeading=character.rotation.y;city.update(t);atmosphere.update(t);vehicles.update(t,dt);people.update(t,dt,character.position);streetLife.update(t,dt);soundscape.update(t,dt,camera,character,moving,walkPhase,people,vehicles,city);street.material.uniforms.time.value=t;rainMat.uniforms.time.value=t;

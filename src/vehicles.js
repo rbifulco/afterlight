@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { batchStaticModel } from './static-model.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 export async function buildVehicles(scene) {
@@ -10,17 +10,18 @@ export async function buildVehicles(scene) {
   const lamp = new THREE.MeshBasicMaterial({color:0xd4f4ff,toneMapped:false});
   function add(source, x, z, angle, color, scale=1.05) {
     const root = source.scene.clone(true);
-    root.traverse(o => {if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material.name==='Smoked blue glass'){o.material=new THREE.MeshPhysicalMaterial({color:0x1a303a,roughness:.20,metalness:0,transparent:true,opacity:.91,depthWrite:false,side:THREE.DoubleSide,specularIntensity:.16,envMapIntensity:1.1});}if(o.material.name==='Body enamel'){o.material=new THREE.MeshPhysicalMaterial({color,metalness:.62,roughness:.27,clearcoat:.38,clearcoatRoughness:.30,bumpMap:wear,bumpScale:.0016});}}});
+    const glass=new THREE.MeshPhysicalMaterial({color:0x1a303a,roughness:.20,metalness:0,transparent:true,opacity:.91,depthWrite:false,side:THREE.DoubleSide,specularIntensity:.16,envMapIntensity:1.1});
+    const paint=new THREE.MeshPhysicalMaterial({color,metalness:.62,roughness:.27,clearcoat:.38,clearcoatRoughness:.30,bumpMap:wear,bumpScale:.0016});
+    root.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material.name==='Smoked blue glass')o.material=glass;if(o.material.name==='Body enamel')o.material=paint;}});
     root.position.set(x,.025,z);root.rotation.y=angle;root.scale.setScalar(scale);scene.add(root);
     const wheels=[];root.traverse(o=>{if(o.name.startsWith('wheel_'))wheels.push(o)});
-    // Parked wheel detail shares materials; merge static surfaces while retaining the opening lid.
-    root.updateMatrixWorld(true);const batches=new Map();for(const o of [...root.children]){if(!o.isMesh||o.name.startsWith('trunk_lid'))continue;o.updateMatrix();const g=o.geometry.clone().applyMatrix4(o.matrix);if(!batches.has(o.material))batches.set(o.material,[]);batches.get(o.material).push(g);root.remove(o)}for(const [m,gs] of batches){const o=new THREE.Mesh(mergeGeometries(gs,false),m);o.castShadow=true;o.receiveShadow=true;root.add(o);gs.forEach(g=>g.dispose())}
+    batchStaticModel(root);
     vehicles.push({root,wheels});return root;
   }
   const taxi=add(sedan,-3.35,3.35,-.38,0x486265,1.18);
   const steering=new THREE.Mesh(new THREE.TorusGeometry(.19,.017,6,24),new THREE.MeshStandardMaterial({color:0x172126,roughness:.7}));steering.position.set(-.43,1.12,.57);steering.rotation.x=.65;taxi.add(steering);
   const cabSign=document.createElement('canvas');cabSign.width=256;cabSign.height=80;
-  const ctx=cabSign.getContext('2d');ctx.fillStyle='#f6bd65';ctx.fillRect(0,0,256,80);ctx.fillStyle='#121b20';ctx.font='bold 54px monospace';ctx.textAlign='center';ctx.fillText('TAXI',128,58);
+  const ctx=cabSign.getContext('2d');ctx.fillStyle='#f6bd65';ctx.fillRect(0,0,256,80);ctx.fillStyle='#121b20';ctx.font='bold 54px monospace';ctx.textAlign='center';ctx.fillText('タクシー',128,58);
   const tex=new THREE.CanvasTexture(cabSign);tex.colorSpace=THREE.SRGBColorSpace;
   const sign=new THREE.Mesh(new THREE.BoxGeometry(.72,.21,.25),new THREE.MeshStandardMaterial({color:0xc1a268,roughness:.35,metalness:.5}));sign.position.set(0,1.69,-.1);taxi.add(sign);
   const face=new THREE.Mesh(new THREE.PlaneGeometry(.65,.18),new THREE.MeshBasicMaterial({map:tex,toneMapped:false}));face.position.set(0,1.69,.031);taxi.add(face);
@@ -28,7 +29,7 @@ export async function buildVehicles(scene) {
   const lidPivot=new THREE.Group();lidPivot.position.set(0,.96,-1.18);taxi.add(lidPivot);
   if(lid){taxi.remove(lid);lidPivot.add(lid);lid.position.sub(lidPivot.position);}
   const serviceVan=add(van,4.12,-11.5,.12,0x77776a,1.08);
-  const c=document.createElement('canvas');c.width=768;c.height=256;const v=c.getContext('2d');v.fillStyle='#3c4442';v.fillRect(0,0,768,256);v.fillStyle='#d9d9c4';v.font='bold 70px sans-serif';v.fillText('KAWASE',45,105);v.font='30px monospace';v.fillText('COLD CHAIN / 夜間配送',45,165);v.fillStyle='#cd7743';v.fillRect(45,195,670,8);
+  const c=document.createElement('canvas');c.width=768;c.height=256;const v=c.getContext('2d');v.fillStyle='#3c4442';v.fillRect(0,0,768,256);v.fillStyle='#d9d9c4';v.font='bold 70px sans-serif';v.fillText('川瀬運輸',45,105);v.font='30px monospace';v.fillText('夜間配送',45,165);v.fillStyle='#cd7743';v.fillRect(45,195,670,8);
   const vt=new THREE.CanvasTexture(c);vt.colorSpace=THREE.SRGBColorSpace;
   for(const side of [-1,1]){const label=new THREE.Mesh(new THREE.PlaneGeometry(1.53,.55),new THREE.MeshBasicMaterial({map:vt}));label.position.set(side*1.079,1.55,-.88);label.rotation.y=side*Math.PI/2;serviceVan.add(label);}
   add(sedan,3.9,-28,Math.PI,0x512c37,1.05);
