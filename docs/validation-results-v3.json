@@ -1,0 +1,791 @@
+{
+  "first": {
+    "fps": 71,
+    "frameMs": 14.0625,
+    "position": {
+      "x": 0,
+      "z": 5
+    },
+    "target": {
+      "x": 0,
+      "z": 5
+    },
+    "speed": 0,
+    "heading": 3.141592653589793,
+    "yaw": 0.2,
+    "pitch": 0.16000000000000003,
+    "distance": 16.13833312784024,
+    "moveCount": 0,
+    "orbitCount": 0,
+    "zoomCount": 7,
+    "elapsed": 63.49549999999006,
+    "quality": "HIGH",
+    "contactShading": true,
+    "calls": 1130,
+    "triangles": 1623999,
+    "assetsLoaded": true,
+    "streetLife": {
+      "workPhase": 0,
+      "armAngles": [
+        0.16593478314828009,
+        -0.734874205907144,
+        0.3759376283002333
+      ],
+      "hologramCount": 2,
+      "hologramTime": 63.49549999999006
+    },
+    "population": {
+      "count": 13,
+      "walkers": [
+        {
+          "id": "west pavement",
+          "x": -7.051457502016476,
+          "z": -11.864134622014328,
+          "distance": 35.57676799999231,
+          "paused": false
+        },
+        {
+          "id": "east pavement",
+          "x": 8.004896570414,
+          "z": 0.7444961484856311,
+          "distance": 33.15136100000073,
+          "paused": false
+        },
+        {
+          "id": "corner umbrella",
+          "x": -19.80354212035271,
+          "z": 1.8671204939498194,
+          "distance": 18.112902499999976,
+          "paused": true
+        },
+        {
+          "id": "east neighbor",
+          "x": 19.58994960246587,
+          "z": -2.6582587829144484,
+          "distance": 28.994111999992302,
+          "paused": false
+        },
+        {
+          "id": "late commuter",
+          "x": -7.05,
+          "z": -26.687213000001083,
+          "distance": 32.54907400000077,
+          "paused": false
+        },
+        {
+          "id": "delivery worker",
+          "x": 7.05,
+          "z": -23.07499999999993,
+          "distance": 32.62514999999871,
+          "paused": true
+        }
+      ],
+      "cookStir": -0.895589171648137,
+      "patronSip": -1.1059979155328858
+    },
+    "atmosphere": {
+      "clothPanels": 18,
+      "windowResidents": 4,
+      "runoffOutlets": 6
+    },
+    "traffic": {
+      "trafficX": -2.6,
+      "trafficZ": -43.12771717620608,
+      "trafficVisible": true,
+      "wiperAngle": 0.3698547045989211
+    },
+    "routeRemaining": 0,
+    "walkEvidence": {
+      "peakSpeed": 0,
+      "maxLegSwing": 0,
+      "lastHeading": 3.141592653589793
+    },
+    "frameP95": 16.79999999998836,
+    "trainX": -15.243249999985089,
+    "joints": {
+      "leftLeg": 0,
+      "rightLeg": 0,
+      "coat": 0.058037042963949126
+    }
+  },
+  "walked": {
+    "fps": 78,
+    "frameMs": 12.847499999999975,
+    "position": {
+      "x": 1.2589639478017185,
+      "z": -4.028182075103365
+    },
+    "target": {
+      "x": 1.2589639478017185,
+      "z": -4.028182075103365
+    },
+    "speed": 0,
+    "heading": 3.003037923070572,
+    "yaw": 0.2,
+    "pitch": 0.15999999999999998,
+    "distance": 16.13833312784024,
+    "moveCount": 1,
+    "orbitCount": 0,
+    "zoomCount": 7,
+    "elapsed": 78.67059999999239,
+    "quality": "HIGH",
+    "contactShading": true,
+    "calls": 975,
+    "triangles": 1572387,
+    "assetsLoaded": true,
+    "streetLife": {
+      "workPhase": 1,
+      "armAngles": [
+        -0.046307167610199866,
+        -0.5514115436739696,
+        0.1335206106974245
+      ],
+      "hologramCount": 2,
+      "hologramTime": 78.67059999999239
+    },
+    "population": {
+      "count": 13,
+      "walkers": [
+        {
+          "id": "west pavement",
+          "x": -7.0500023337722615,
+          "z": -6.450757753432647,
+          "distance": 43.1021439999926,
+          "paused": false
+        },
+        {
+          "id": "east pavement",
+          "x": 7.057725378039971,
+          "z": -8.951810404901098,
+          "distance": 42.916180500001296,
+          "paused": false
+        },
+        {
+          "id": "corner umbrella",
+          "x": -20.191002516405042,
+          "z": 1.834748269832851,
+          "distance": 22.546922999999992,
+          "paused": false
+        },
+        {
+          "id": "east neighbor",
+          "x": 18.444974522057002,
+          "z": 2.5448374924134516,
+          "distance": 35.084607999992485,
+          "paused": false
+        },
+        {
+          "id": "late commuter",
+          "x": -7.05,
+          "z": -26.385235500001077,
+          "distance": 39.326088500001134,
+          "paused": false
+        },
+        {
+          "id": "delivery worker",
+          "x": 7.05,
+          "z": -22.92484999999994,
+          "distance": 38.47514999999798,
+          "paused": true
+        }
+      ],
+      "cookStir": -0.9305080387084892,
+      "patronSip": -0.55
+    },
+    "atmosphere": {
+      "clothPanels": 18,
+      "windowResidents": 4,
+      "runoffOutlets": 6
+    },
+    "traffic": {
+      "trafficX": -7.633905931190977,
+      "trafficZ": -13.949667651011195,
+      "trafficVisible": true,
+      "wiperAngle": -0.48700695720236487
+    },
+    "routeRemaining": 0,
+    "walkEvidence": {
+      "peakSpeed": 2.8999999999999977,
+      "maxLegSwing": 0.5299487393775386,
+      "lastHeading": 3.0030379230706066
+    },
+    "frameP95": 16.79999999998836,
+    "trainX": -38.005899999988586,
+    "joints": {
+      "leftLeg": 0,
+      "rightLeg": 0,
+      "coat": 0.033171758324921655
+    }
+  },
+  "orbit": {
+    "fps": 78,
+    "frameMs": 12.680000000000048,
+    "position": {
+      "x": 1.2589639478017185,
+      "z": -4.028182075103365
+    },
+    "target": {
+      "x": 1.2589639478017185,
+      "z": -4.028182075103365
+    },
+    "speed": 0,
+    "heading": 3.003037923070572,
+    "yaw": -0.265,
+    "pitch": 0.164,
+    "distance": 16.13833312784024,
+    "moveCount": 1,
+    "orbitCount": 1,
+    "zoomCount": 7,
+    "elapsed": 137.16630000000092,
+    "quality": "HIGH",
+    "contactShading": true,
+    "calls": 968,
+    "triangles": 1462243,
+    "assetsLoaded": true,
+    "streetLife": {
+      "workPhase": 1,
+      "armAngles": [
+        0.14213511383935845,
+        -0.7473379581622578,
+        -0.02051412125697415
+      ],
+      "hologramCount": 2,
+      "hologramTime": 137.16630000000092
+    },
+    "population": {
+      "count": 13,
+      "walkers": [
+        {
+          "id": "west pavement",
+          "x": -7.0500908809861755,
+          "z": -12.796591138620768,
+          "distance": 73.30438399999451,
+          "paused": false
+        },
+        {
+          "id": "east pavement",
+          "x": 13.64037077739919,
+          "z": 2.486931230096894,
+          "distance": 77.27399200000319,
+          "paused": false
+        },
+        {
+          "id": "corner umbrella",
+          "x": -20.529875517649803,
+          "z": 1.8069755558671876,
+          "distance": 39.03010300000015,
+          "paused": true
+        },
+        {
+          "id": "east neighbor",
+          "x": 19.222603971363746,
+          "z": 2.413132044012838,
+          "distance": 59.80729599999358,
+          "paused": true
+        },
+        {
+          "id": "late commuter",
+          "x": -7.05,
+          "z": -29.928067500000886,
+          "distance": 71.49096650000286,
+          "paused": true
+        },
+        {
+          "id": "delivery worker",
+          "x": 7.05,
+          "z": -27.74704999999964,
+          "distance": 67.00349999999473,
+          "paused": false
+        }
+      ],
+      "cookStir": -0.9524866246824744,
+      "patronSip": -0.55
+    },
+    "atmosphere": {
+      "clothPanels": 18,
+      "windowResidents": 4,
+      "runoffOutlets": 6
+    },
+    "traffic": {
+      "trafficX": -5.1133194145514596,
+      "trafficZ": -13.728876874588966,
+      "trafficVisible": true,
+      "wiperAngle": -0.55
+    },
+    "routeRemaining": 0,
+    "walkEvidence": {
+      "peakSpeed": 2.8999999999999977,
+      "maxLegSwing": 0.5299487393775386,
+      "lastHeading": 3.0030379230706066
+    },
+    "frameP95": 16.900000000023283,
+    "trainX": -50.749450000001374,
+    "joints": {
+      "leftLeg": 0,
+      "rightLeg": 0,
+      "coat": 0.04964903308712984
+    }
+  },
+  "reset": {
+    "fps": 73,
+    "frameMs": 13.714999999999902,
+    "position": {
+      "x": 0,
+      "z": 5
+    },
+    "target": {
+      "x": 0,
+      "z": 5
+    },
+    "speed": 0,
+    "heading": 3.003037923070572,
+    "yaw": 0.2,
+    "pitch": 0.16,
+    "distance": 30,
+    "moveCount": 1,
+    "orbitCount": 1,
+    "zoomCount": 7,
+    "elapsed": 201.7330000000122,
+    "quality": "HIGH",
+    "contactShading": false,
+    "calls": 960,
+    "triangles": 1301238,
+    "assetsLoaded": true,
+    "streetLife": {
+      "workPhase": 2,
+      "armAngles": [
+        -0.2988813273417644,
+        -0.878110938708866,
+        0.18193627658174163
+      ],
+      "hologramCount": 2,
+      "hologramTime": 201.7330000000122
+    },
+    "population": {
+      "count": 13,
+      "walkers": [
+        {
+          "id": "west pavement",
+          "x": -7.050285199947,
+          "z": -12.780741645683701,
+          "distance": 109.5921279999898,
+          "paused": false
+        },
+        {
+          "id": "east pavement",
+          "x": 7.679208420277377,
+          "z": -1.2167777453091053,
+          "distance": 117.4328990000065,
+          "paused": false
+        },
+        {
+          "id": "corner umbrella",
+          "x": -19.87119297221415,
+          "z": 3.2677657379401825,
+          "distance": 57.10959800000022,
+          "paused": true
+        },
+        {
+          "id": "east neighbor",
+          "x": 19.559970707947837,
+          "z": -2.241947846657512,
+          "distance": 88.42476799999042,
+          "paused": false
+        },
+        {
+          "id": "late commuter",
+          "x": -7.05,
+          "z": -27.60551650000084,
+          "distance": 104.86834150000571,
+          "paused": false
+        },
+        {
+          "id": "delivery worker",
+          "x": 7.05,
+          "z": -28.235824999999668,
+          "distance": 98.55217499999385,
+          "paused": false
+        }
+      ],
+      "cookStir": -0.8965267570969958,
+      "patronSip": -0.6203741882150937
+    },
+    "atmosphere": {
+      "clothPanels": 18,
+      "windowResidents": 4,
+      "runoffOutlets": 6
+    },
+    "traffic": {
+      "trafficX": -15.925645250210833,
+      "trafficZ": -13.960752558933452,
+      "trafficVisible": true,
+      "wiperAngle": -0.55
+    },
+    "routeRemaining": 0,
+    "walkEvidence": {
+      "peakSpeed": 2.8999999999999977,
+      "maxLegSwing": 0.5299487393775386,
+      "lastHeading": 3.0030379230706066
+    },
+    "frameP95": 16.79999999998836,
+    "trainX": 2.4004999999817045,
+    "joints": {
+      "leftLeg": 0,
+      "rightLeg": 0,
+      "coat": 0.05838760356899962
+    }
+  },
+  "light": {
+    "fps": 92,
+    "frameMs": 10.869166666666692,
+    "position": {
+      "x": 0,
+      "z": 5
+    },
+    "target": {
+      "x": 0,
+      "z": 5
+    },
+    "speed": 0,
+    "heading": 3.003037923070572,
+    "yaw": 0.2,
+    "pitch": 0.16,
+    "distance": 30,
+    "moveCount": 1,
+    "orbitCount": 1,
+    "zoomCount": 7,
+    "elapsed": 239.05830000002013,
+    "quality": "PERFORMANCE",
+    "contactShading": false,
+    "calls": 948,
+    "triangles": 1271190,
+    "assetsLoaded": true,
+    "streetLife": {
+      "workPhase": 1,
+      "armAngles": [
+        0.18621939399571746,
+        -0.7125385387497053,
+        0.1536827192631489
+      ],
+      "hologramCount": 2,
+      "hologramTime": 239.05830000002013
+    },
+    "population": {
+      "count": 13,
+      "walkers": [
+        {
+          "id": "west pavement",
+          "x": -10.323124230829556,
+          "z": 3.175848056272113,
+          "distance": 128.00819199998762,
+          "paused": true
+        },
+        {
+          "id": "east pavement",
+          "x": 7.3281961135839655,
+          "z": -3.8919960027646114,
+          "distance": 139.44118600000115,
+          "paused": false
+        },
+        {
+          "id": "corner umbrella",
+          "x": -20.420737788192064,
+          "z": 3.010334428149103,
+          "distance": 68.50195799999935,
+          "paused": false
+        },
+        {
+          "id": "east neighbor",
+          "x": 19.599901671009203,
+          "z": 1.7220193074354415,
+          "distance": 105.31551999998841,
+          "paused": true
+        },
+        {
+          "id": "late commuter",
+          "x": -7.05,
+          "z": -12.22725150000075,
+          "distance": 124.87766950000469,
+          "paused": false
+        },
+        {
+          "id": "delivery worker",
+          "x": 7.05,
+          "z": -31.173799999999545,
+          "distance": 117.80204999999279,
+          "paused": false
+        }
+      ],
+      "cookStir": -0.8597771717425647,
+      "patronSip": -0.550239254981308
+    },
+    "atmosphere": {
+      "clothPanels": 18,
+      "windowResidents": 4,
+      "runoffOutlets": 6
+    },
+    "traffic": {
+      "trafficX": -2.6,
+      "trafficZ": -50.55433790254334,
+      "trafficVisible": true,
+      "wiperAngle": 0.5251134078882258
+    },
+    "routeRemaining": 0,
+    "walkEvidence": {
+      "peakSpeed": 2.8999999999999977,
+      "maxLegSwing": 0.5299487393775386,
+      "lastHeading": 3.0030379230706066
+    },
+    "frameP95": 16.70000000001164,
+    "trainX": -53.58745000003019,
+    "joints": {
+      "leftLeg": 0,
+      "rightLeg": 0,
+      "coat": 0.040138426039129156
+    }
+  },
+  "mobile": {
+    "fps": 120,
+    "frameMs": 8.332916666666673,
+    "position": {
+      "x": 0,
+      "z": 5
+    },
+    "target": {
+      "x": 0,
+      "z": 5
+    },
+    "speed": 0,
+    "heading": 3.141592653589793,
+    "yaw": 0.2,
+    "pitch": 0.2499999999999999,
+    "distance": 47.999999999999986,
+    "moveCount": 0,
+    "orbitCount": 0,
+    "zoomCount": 0,
+    "elapsed": 39.82580000001265,
+    "quality": "HIGH",
+    "contactShading": false,
+    "calls": 936,
+    "triangles": 1199030,
+    "assetsLoaded": true,
+    "streetLife": {
+      "workPhase": 2,
+      "armAngles": [
+        -0.017406186770789492,
+        -0.8454192584030337,
+        0.11776484430410541
+      ],
+      "hologramCount": 2,
+      "hologramTime": 39.82580000001265
+    },
+    "population": {
+      "count": 13,
+      "walkers": [
+        {
+          "id": "west pavement",
+          "x": -8.15792878847565,
+          "z": 3.5032364129286764,
+          "distance": 21.1625600000079,
+          "paused": false
+        },
+        {
+          "id": "east pavement",
+          "x": 9.073086134551275,
+          "z": 1.9382897637459389,
+          "distance": 19.88276850000038,
+          "paused": false
+        },
+        {
+          "id": "corner umbrella",
+          "x": -20.525402614885145,
+          "z": 1.8068735524347166,
+          "distance": 10.727108000000083,
+          "paused": true
+        },
+        {
+          "id": "east neighbor",
+          "x": 19.59667306108044,
+          "z": -0.848994938526641,
+          "distance": 18.971776000007626,
+          "paused": false
+        },
+        {
+          "id": "late commuter",
+          "x": -7.05,
+          "z": -14.020768500000454,
+          "distance": 19.871092500000355,
+          "paused": false
+        },
+        {
+          "id": "delivery worker",
+          "x": 7.05,
+          "z": -27.775099999999334,
+          "distance": 19.624799999999226,
+          "paused": false
+        }
+      ],
+      "cookStir": -1.0498827032837308,
+      "patronSip": -0.5500043074278288
+    },
+    "atmosphere": {
+      "clothPanels": 18,
+      "windowResidents": 4,
+      "runoffOutlets": 6
+    },
+    "traffic": {
+      "trafficX": -2.6,
+      "trafficZ": -95.20561452242018,
+      "trafficVisible": true,
+      "wiperAngle": -0.55
+    },
+    "routeRemaining": 0,
+    "walkEvidence": {
+      "peakSpeed": 0,
+      "maxLegSwing": 0,
+      "lastHeading": 3.141592653589793
+    },
+    "frameP95": 9.69999999999709,
+    "trainX": -54.73870000001897,
+    "joints": {
+      "leftLeg": 0,
+      "rightLeg": 0,
+      "coat": 0.047211224867928434
+    }
+  },
+  "mobileLayout": {
+    "canvas": {
+      "bottom": 844,
+      "height": 844,
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    },
+    "controls": {
+      "bottom": 832,
+      "height": 44,
+      "left": 0,
+      "right": 390,
+      "top": 788,
+      "width": 390,
+      "x": 0,
+      "y": 788
+    },
+    "height": 844,
+    "width": 390
+  },
+  "final": {
+    "fps": 72,
+    "frameMs": 13.958749999999963,
+    "position": {
+      "x": 0,
+      "z": 5
+    },
+    "target": {
+      "x": 0,
+      "z": 5
+    },
+    "speed": 0,
+    "heading": 3.141592653589793,
+    "yaw": 0.2,
+    "pitch": 0.16000000000000003,
+    "distance": 30,
+    "moveCount": 0,
+    "orbitCount": 0,
+    "zoomCount": 0,
+    "elapsed": 70.09260000001477,
+    "quality": "HIGH",
+    "contactShading": false,
+    "calls": 957,
+    "triangles": 1300934,
+    "assetsLoaded": true,
+    "streetLife": {
+      "workPhase": 0,
+      "armAngles": [
+        -0.27447824560575074,
+        -0.891619854278817,
+        0.23733304345303607
+      ],
+      "hologramCount": 2,
+      "hologramTime": 70.09260000001477
+    },
+    "population": {
+      "count": 13,
+      "walkers": [
+        {
+          "id": "west pavement",
+          "x": -7.050090385788016,
+          "z": -12.930848379003635,
+          "distance": 37.65856000000787,
+          "paused": true
+        },
+        {
+          "id": "east pavement",
+          "x": 7.338598248686185,
+          "z": -3.8178550119385553,
+          "distance": 37.74531100000115,
+          "paused": false
+        },
+        {
+          "id": "corner umbrella",
+          "x": -20.406392132279876,
+          "z": 3.1764012631421594,
+          "distance": 20.17893500000008,
+          "paused": true
+        },
+        {
+          "id": "east neighbor",
+          "x": 19.598761325397017,
+          "z": 0.728878933109736,
+          "distance": 32.51929600000777,
+          "paused": false
+        },
+        {
+          "id": "late commuter",
+          "x": -7.05,
+          "z": -29.93056950000101,
+          "distance": 35.78089350000098,
+          "paused": true
+        },
+        {
+          "id": "delivery worker",
+          "x": 7.05,
+          "z": -20.076724999999705,
+          "distance": 35.63632499999803,
+          "paused": true
+        }
+      ],
+      "cookStir": -0.9604264056101182,
+      "patronSip": -0.55
+    },
+    "atmosphere": {
+      "clothPanels": 18,
+      "windowResidents": 4,
+      "runoffOutlets": 6
+    },
+    "traffic": {
+      "trafficX": -2.465862063988791,
+      "trafficZ": -28.61842781383531,
+      "trafficVisible": true,
+      "wiperAngle": -0.3524630974127534
+    },
+    "routeRemaining": 0,
+    "walkEvidence": {
+      "peakSpeed": 0,
+      "maxLegSwing": 0,
+      "lastHeading": 3.141592653589793
+    },
+    "frameP95": 17.20000000001164,
+    "trainX": -25.138900000022154,
+    "joints": {
+      "leftLeg": 0,
+      "rightLeg": 0,
+      "coat": 0.07040962299875314
+    }
+  },
+  "consoleErrors": [],
+  "finalDOM": "- generic \"Rainy cyberpunk neighborhood. Click the street to walk, drag to look around, scroll to zoom.\"\n- navigation \"View controls\":\n  - generic: Click to walk\n  - generic: Drag to look\n  - generic: Scroll to zoom\n  - button \"Reset view\"\n  - 'button \"Quality: high\"'"
+}

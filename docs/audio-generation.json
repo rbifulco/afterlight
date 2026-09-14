@@ -1,0 +1,182 @@
+[
+  {
+    "id": "rain-street",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 24,
+    "loop": true,
+    "bytes": 384984,
+    "sha256": "c0af404a0e2c881b868163f340f9470c84ca8b10a9a55e494a2beca5b45d3171",
+    "credits": "264",
+    "generationSeconds": 6.23
+  },
+  {
+    "id": "city-air",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 24,
+    "loop": true,
+    "bytes": 384984,
+    "sha256": "f72701ab0bf62f8cdb828fc1505581e33592397b9086b074825327b082794c6e",
+    "credits": "264",
+    "generationSeconds": 10.9
+  },
+  {
+    "id": "awning-rain",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 14,
+    "loop": true,
+    "bytes": 224906,
+    "sha256": "592f69244b071f2b1986890bd5754662bb665e72ec2acb69279f0a9400a41ae7",
+    "credits": "154",
+    "generationSeconds": 5.03
+  },
+  {
+    "id": "gutter-water",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 13,
+    "loop": true,
+    "bytes": 209023,
+    "sha256": "d0e25ca9bf7495acbbd2ec71318c679cb5f378160dac90eecbc1e5419e32bca7",
+    "credits": "143",
+    "generationSeconds": 4.74
+  },
+  {
+    "id": "noodle-kitchen",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 18,
+    "loop": true,
+    "bytes": 289271,
+    "sha256": "a3a3916943354b713fadb8267b2a0b28b8ff61015d71fdc382cd72b24cdb1ee2",
+    "credits": "198",
+    "generationSeconds": 5.31
+  },
+  {
+    "id": "shop-murmur",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 18,
+    "loop": true,
+    "bytes": 289271,
+    "sha256": "47b7657fadb892f92f016767e3391c5847c9eea0ebe4afdca671f63cc5e2a40d",
+    "credits": "198",
+    "generationSeconds": 5.43
+  },
+  {
+    "id": "workshop-servo",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 10,
+    "loop": true,
+    "bytes": 160958,
+    "sha256": "f969ec70f2a5c1777e9774c1cefbc5e18bde293eb156ac0bc226654720a8beb9",
+    "credits": "110",
+    "generationSeconds": 8.9
+  },
+  {
+    "id": "projector-hum",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 12,
+    "loop": true,
+    "bytes": 193141,
+    "sha256": "0315e3d712efb58ef1dc60b4972d320e88b70b0172446a24fe9348086434e236",
+    "credits": "132",
+    "generationSeconds": 4.6
+  },
+  {
+    "id": "metro-roll",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 14,
+    "loop": true,
+    "bytes": 224906,
+    "sha256": "1fd2872d1e35566e86744a15c70d58d9944e69bbd1de34faea37d606f856cdb3",
+    "credits": "154",
+    "generationSeconds": 5.06
+  },
+  {
+    "id": "wet-tires",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 10,
+    "loop": true,
+    "bytes": 160958,
+    "sha256": "78b90603a1641711f023193109c0f960752847ac409c063fff464f291ddd5ec5",
+    "credits": "110",
+    "generationSeconds": 4.4
+  },
+  {
+    "id": "cab-idle",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 12,
+    "loop": true,
+    "bytes": 193141,
+    "sha256": "ead04cbcf7f6569369da568cdb525c196a9bc132e2e50342534001dd22140002",
+    "credits": "132",
+    "generationSeconds": 4.36
+  },
+  {
+    "id": "boot-wet-a",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 1.2,
+    "loop": false,
+    "bytes": 20106,
+    "sha256": "07fe97553f57149c8fdc9163e1c6c357227735095570428d1babf11911105646",
+    "credits": "13",
+    "generationSeconds": 1.89
+  },
+  {
+    "id": "boot-wet-b",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 1.2,
+    "loop": false,
+    "bytes": 20106,
+    "sha256": "d5f056aaa9565ee481efac42130ffeaa78d14af8286f7f972b5a7818917c9073",
+    "credits": "13",
+    "generationSeconds": 2.4
+  },
+  {
+    "id": "wiper-sweep",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 1.7,
+    "loop": false,
+    "bytes": 28047,
+    "sha256": "7707c706ec05d0efe4e8b10b8dd9a2a685853e0e9fb6f34ac412a280e81f80b1",
+    "credits": "19",
+    "generationSeconds": 2.23
+  },
+  {
+    "id": "cup-set-down",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 1.5,
+    "loop": false,
+    "bytes": 24703,
+    "sha256": "5d61c7a5a3682d7868c11d872c4bdc9650a4008b01410a051f4f376356edc07e",
+    "credits": "17",
+    "generationSeconds": 2.12
+  },
+  {
+    "id": "station-pa",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 8,
+    "loop": false,
+    "bytes": 129193,
+    "sha256": "371845049fac8274b71b0fda4860e550d0e1004c4b9981bf8077b8a8908d0e8e",
+    "credits": "88",
+    "generationSeconds": 2.65
+  },
+  {
+    "id": "alley-door",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 3,
+    "loop": false,
+    "bytes": 48945,
+    "sha256": "fe6ca7c769d445a71073c37a818ae2bf51af51c4926095a91fc4bb92c0d3c9e7",
+    "credits": "33",
+    "generationSeconds": 1.95
+  },
+  {
+    "id": "radio-jazz",
+    "model": "eleven_text_to_sound_v2",
+    "durationRequested": 22,
+    "loop": true,
+    "bytes": 353219,
+    "sha256": "19449ee5780e9560144f50bf972a3c188d26707b407a19438feb51829d0d3169",
+    "credits": "242",
+    "generationSeconds": 5.66
+  }
+]

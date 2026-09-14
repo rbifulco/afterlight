@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.dream-loop/
+.DS_Store
+.sites-build/
+.env
+.env.*
+!.env.example

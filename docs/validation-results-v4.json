@@ -1,0 +1,557 @@
+{
+  "date": "2026-09-14",
+  "enabled": {
+    "fps": 89,
+    "frameMs": 11.285000000000005,
+    "position": {
+      "x": 0,
+      "z": 5
+    },
+    "target": {
+      "x": 0,
+      "z": 5
+    },
+    "speed": 0,
+    "heading": 3.141592653589793,
+    "yaw": 0.2,
+    "pitch": 0.16,
+    "distance": 30,
+    "moveCount": 0,
+    "orbitCount": 0,
+    "zoomCount": 0,
+    "elapsed": 59.301499999977906,
+    "quality": "HIGH",
+    "contactShading": false,
+    "calls": 948,
+    "triangles": 1271522,
+    "assetsLoaded": true,
+    "streetLife": {
+      "workPhase": 0,
+      "armAngles": [
+        0.31893499716067025,
+        -0.5298916038008074,
+        0.06771846846940084
+      ],
+      "hologramCount": 2,
+      "hologramTime": 59.301499999977906
+    },
+    "population": {
+      "count": 13,
+      "walkers": [
+        {
+          "id": "west pavement",
+          "x": -7.056344185853923,
+          "z": -8.152184874237442,
+          "distance": 32.879551999984905,
+          "paused": false
+        },
+        {
+          "id": "east pavement",
+          "x": 9.130621352019771,
+          "z": 2.0091923382288805,
+          "distance": 31.014792000000284,
+          "paused": false
+        },
+        {
+          "id": "corner umbrella",
+          "x": -20.40680450940141,
+          "z": 3.1710752759463277,
+          "distance": 16.200303000000062,
+          "paused": true
+        },
+        {
+          "id": "east neighbor",
+          "x": 19.397570708203713,
+          "z": 0.039272135995388674,
+          "distance": 26.283647999984883,
+          "paused": false
+        },
+        {
+          "id": "late commuter",
+          "x": -7.05,
+          "z": -23.77502400000014,
+          "distance": 29.623402000000283,
+          "paused": false
+        },
+        {
+          "id": "delivery worker",
+          "x": 7.05,
+          "z": -25.57647500000003,
+          "distance": 30.13732499999891,
+          "paused": false
+        }
+      ],
+      "cookStir": -0.8949351752783459,
+      "patronSip": -0.6703702271839906
+    },
+    "atmosphere": {
+      "clothPanels": 18,
+      "windowResidents": 4,
+      "runoffOutlets": 6
+    },
+    "traffic": {
+      "trafficX": -2.6,
+      "trafficZ": -52.35565782269755,
+      "trafficVisible": true,
+      "wiperAngle": -0.55
+    },
+    "audio": {
+      "ready": true,
+      "started": true,
+      "muted": false,
+      "loading": false,
+      "context": "running",
+      "decoded": 18,
+      "expected": 18,
+      "failed": [],
+      "loopVoices": 16,
+      "activeSources": 21,
+      "events": 64,
+      "heroSteps": 0,
+      "rms": 0.04204,
+      "peak": 0.15135,
+      "compressorReduction": -0.00013265067536849529,
+      "listener": [
+        2.471260475008862,
+        4.1538863264164245,
+        13.298033738058226
+      ],
+      "trainGain": 0.8196852803230286,
+      "trafficGain": 0.7797424793243408
+    },
+    "routeRemaining": 0,
+    "walkEvidence": {
+      "peakSpeed": 0,
+      "maxLegSwing": 0,
+      "lastHeading": 3.141592653589793
+    },
+    "frameP95": 16.700000000004366,
+    "trainX": -8.95224999996686,
+    "joints": {
+      "leftLeg": 0,
+      "rightLeg": 0,
+      "coat": 0.025532288116782615
+    }
+  },
+  "walk": {
+    "fps": 6,
+    "frameMs": 61.18083333333337,
+    "position": {
+      "x": 1.6690596438811136,
+      "z": -4.525113959222686
+    },
+    "target": {
+      "x": 1.6690596438811136,
+      "z": -4.525113959222686
+    },
+    "speed": 0,
+    "heading": 2.968126486270064,
+    "yaw": 0.2,
+    "pitch": 0.15999999999999998,
+    "distance": 30,
+    "moveCount": 1,
+    "orbitCount": 0,
+    "zoomCount": 0,
+    "elapsed": 73.29309999997928,
+    "quality": "HIGH",
+    "contactShading": false,
+    "calls": 869,
+    "triangles": 1252148,
+    "assetsLoaded": true,
+    "streetLife": {
+      "workPhase": 1,
+      "armAngles": [
+        0.28764360582755266,
+        -0.5840594335588031,
+        0.3000083584802747
+      ],
+      "hologramCount": 2,
+      "hologramTime": 73.29309999997928
+    },
+    "population": {
+      "count": 13,
+      "walkers": [
+        {
+          "id": "west pavement",
+          "x": -7.050072956944172,
+          "z": -10.920052791673053,
+          "distance": 39.64755199998483,
+          "paused": false
+        },
+        {
+          "id": "east pavement",
+          "x": 7.059999134581071,
+          "z": -5.731469728697641,
+          "distance": 39.69638450000076,
+          "paused": true
+        },
+        {
+          "id": "corner umbrella",
+          "x": -20.406867745119598,
+          "z": 3.17085327777109,
+          "distance": 20.218380000000096,
+          "paused": true
+        },
+        {
+          "id": "east neighbor",
+          "x": 19.33926386156545,
+          "z": 1.8973193647671116,
+          "distance": 33.80895999998506,
+          "paused": false
+        },
+        {
+          "id": "late commuter",
+          "x": -7.05,
+          "z": -29.93154250000028,
+          "distance": 35.77992050000056,
+          "paused": true
+        },
+        {
+          "id": "delivery worker",
+          "x": 7.05,
+          "z": -20.394950000000495,
+          "distance": 35.956199999998425,
+          "paused": false
+        }
+      ],
+      "cookStir": -1.0499870512470872,
+      "patronSip": -0.55
+    },
+    "atmosphere": {
+      "clothPanels": 18,
+      "windowResidents": 4,
+      "runoffOutlets": 6
+    },
+    "traffic": {
+      "trafficX": -2.5077600288092357,
+      "trafficZ": -21.577759477414123,
+      "trafficVisible": true,
+      "wiperAngle": -0.55
+    },
+    "audio": {
+      "ready": true,
+      "started": true,
+      "muted": false,
+      "loading": false,
+      "context": "running",
+      "decoded": 18,
+      "expected": 18,
+      "failed": [],
+      "loopVoices": 16,
+      "activeSources": 20,
+      "events": 122,
+      "heroSteps": 11,
+      "rms": 0.05003,
+      "peak": 0.17011,
+      "compressorReduction": -0.0001813110284274444,
+      "listener": [
+        3.894968350632222,
+        4.153886326416424,
+        5.573166320060881
+      ],
+      "trainGain": 0.8196852803230286,
+      "trafficGain": 0.7797424793243408
+    },
+    "routeRemaining": 0,
+    "walkEvidence": {
+      "peakSpeed": 2.9,
+      "maxLegSwing": 0.5299993464167974,
+      "lastHeading": 2.968126486270074
+    },
+    "frameP95": 16.80000000000291,
+    "trainX": -29.939649999968914,
+    "joints": {
+      "leftLeg": 0,
+      "rightLeg": 0,
+      "coat": 0.07196518225453631
+    }
+  },
+  "muted": {
+    "fps": 42,
+    "frameMs": 23.316249999999975,
+    "position": {
+      "x": 0,
+      "z": 5
+    },
+    "target": {
+      "x": 0,
+      "z": 5
+    },
+    "speed": 0,
+    "heading": 2.968126486270064,
+    "yaw": 0.2,
+    "pitch": 0.16000000000000003,
+    "distance": 30,
+    "moveCount": 1,
+    "orbitCount": 0,
+    "zoomCount": 0,
+    "elapsed": 98.64719999998147,
+    "quality": "HIGH",
+    "contactShading": false,
+    "calls": 938,
+    "triangles": 1204312,
+    "assetsLoaded": true,
+    "streetLife": {
+      "workPhase": 2,
+      "armAngles": [
+        -0.31876741028090894,
+        -0.826922217083925,
+        0.006081303880383024
+      ],
+      "hologramCount": 2,
+      "hologramTime": 98.64719999998147
+    },
+    "population": {
+      "count": 13,
+      "walkers": [
+        {
+          "id": "west pavement",
+          "x": -8.301555234690872,
+          "z": 3.600536131581584,
+          "distance": 54.42079999998428,
+          "paused": false
+        },
+        {
+          "id": "east pavement",
+          "x": 7.050040891819062,
+          "z": -13.408435318927646,
+          "distance": 54.42162750000154,
+          "paused": false
+        },
+        {
+          "id": "corner umbrella",
+          "x": -20.413859351668837,
+          "z": 3.0979698093633097,
+          "distance": 28.25501700000007,
+          "paused": false
+        },
+        {
+          "id": "east neighbor",
+          "x": 19.599253018055588,
+          "z": 1.119242833378629,
+          "distance": 44.89420799998471,
+          "paused": false
+        },
+        {
+          "id": "late commuter",
+          "x": -7.05,
+          "z": -14.679350499999938,
+          "distance": 51.03211250000138,
+          "paused": false
+        },
+        {
+          "id": "delivery worker",
+          "x": 7.05,
+          "z": -31.92927500000037,
+          "distance": 47.490524999997945,
+          "paused": true
+        }
+      ],
+      "cookStir": -1.04505030904607,
+      "patronSip": -0.55
+    },
+    "atmosphere": {
+      "clothPanels": 18,
+      "windowResidents": 4,
+      "runoffOutlets": 6
+    },
+    "traffic": {
+      "trafficX": -2.6,
+      "trafficZ": -97.01946860557946,
+      "trafficVisible": true,
+      "wiperAngle": 0.5294850381313692
+    },
+    "audio": {
+      "ready": true,
+      "started": true,
+      "muted": true,
+      "loading": false,
+      "context": "suspended",
+      "decoded": 18,
+      "expected": 18,
+      "failed": [],
+      "loopVoices": 16,
+      "activeSources": 19,
+      "events": 123,
+      "heroSteps": 11,
+      "rms": 0.00021,
+      "peak": 0.16841,
+      "compressorReduction": -0.00014198868302628398,
+      "listener": [
+        2.471260475008862,
+        4.1538863264164245,
+        13.298033738058226
+      ],
+      "trainGain": 0.8196852803230286,
+      "trafficGain": 0.7797424793243408
+    },
+    "routeRemaining": 0,
+    "walkEvidence": {
+      "peakSpeed": 2.9,
+      "maxLegSwing": 0.5299993464167974,
+      "lastHeading": 2.968126486270074
+    },
+    "frameP95": 33.89999999999418,
+    "trainX": -85,
+    "joints": {
+      "leftLeg": 0,
+      "rightLeg": 0,
+      "coat": 0.07496200321303599
+    }
+  },
+  "finalEnabled": {
+    "fps": 83,
+    "frameMs": 12.020000000000012,
+    "position": {
+      "x": 0,
+      "z": 5
+    },
+    "target": {
+      "x": 0,
+      "z": 5
+    },
+    "speed": 0,
+    "heading": 3.141592653589793,
+    "yaw": 0.2,
+    "pitch": 0.15999999999999998,
+    "distance": 17.136271850094758,
+    "moveCount": 0,
+    "orbitCount": 0,
+    "zoomCount": 4,
+    "elapsed": 117.67700000002496,
+    "quality": "HIGH",
+    "contactShading": true,
+    "calls": 1194,
+    "triangles": 1697185,
+    "assetsLoaded": true,
+    "streetLife": {
+      "workPhase": 0,
+      "armAngles": [
+        0.03504551739373542,
+        -0.819577042343928,
+        -0.0487388027289678
+      ],
+      "hologramCount": 2,
+      "hologramTime": 117.67700000002496
+    },
+    "population": {
+      "count": 13,
+      "walkers": [
+        {
+          "id": "west pavement",
+          "x": -7.607093416695211,
+          "z": -1.3880726763580904,
+          "distance": 63.65728000001535,
+          "paused": false
+        },
+        {
+          "id": "east pavement",
+          "x": 7.710480633943774,
+          "z": -0.9843578299670676,
+          "distance": 66.868382500001,
+          "paused": false
+        },
+        {
+          "id": "corner umbrella",
+          "x": -19.877405460537638,
+          "z": 3.2667401291941527,
+          "distance": 33.003470500000006,
+          "paused": true
+        },
+        {
+          "id": "east neighbor",
+          "x": 19.510762764195835,
+          "z": -1.5663578293494582,
+          "distance": 51.9236480000154,
+          "paused": false
+        },
+        {
+          "id": "late commuter",
+          "x": -7.05,
+          "z": -17.93028249999994,
+          "distance": 59.51514350000102,
+          "paused": true
+        },
+        {
+          "id": "delivery worker",
+          "x": 7.05,
+          "z": -20.76087500000024,
+          "distance": 58.67887499999798,
+          "paused": false
+        }
+      ],
+      "cookStir": -0.8667012784523479,
+      "patronSip": -0.972056700887781
+    },
+    "atmosphere": {
+      "clothPanels": 18,
+      "windowResidents": 4,
+      "runoffOutlets": 6
+    },
+    "traffic": {
+      "trafficX": -2.6,
+      "trafficZ": -55.151070174251295,
+      "trafficVisible": true,
+      "wiperAngle": -0.55,
+      "obstacles": [
+        {
+          "minX": -6.099762891389102,
+          "maxX": -0.6221213954357625,
+          "minZ": -0.16791953946648047,
+          "maxZ": 6.912563474153951
+        },
+        {
+          "minX": 2.064431815833463,
+          "maxX": 6.15358901304431,
+          "minZ": -14.748392398975342,
+          "maxZ": -8.433887348372338
+        }
+      ]
+    },
+    "audio": {
+      "ready": true,
+      "started": true,
+      "muted": false,
+      "loading": false,
+      "context": "running",
+      "decoded": 18,
+      "expected": 18,
+      "failed": [],
+      "loopVoices": 16,
+      "activeSources": 22,
+      "events": 93,
+      "heroSteps": 0,
+      "rms": 0.04159,
+      "peak": 0.17217,
+      "compressorReduction": -0.00013265067536849529,
+      "listener": [
+        1.4116063770715388,
+        2.461932622751786,
+        9.577136428246991
+      ],
+      "trainGain": 0.8196852803230286,
+      "trafficGain": 0.7797424793243408
+    },
+    "routeRemaining": 0,
+    "walkEvidence": {
+      "peakSpeed": 0,
+      "maxLegSwing": 0,
+      "lastHeading": 3.141592653589793
+    },
+    "frameP95": 17,
+    "trainX": -21.51550000003744,
+    "joints": {
+      "leftLeg": 0,
+      "rightLeg": 0,
+      "coat": 0.07384356502342518
+    }
+  },
+  "background": {
+    "context": "running",
+    "hidden": false
+  },
+  "backgroundTest": {
+    "verified": false,
+    "reason": "The alternate tab did not become foreground during the attempted test."
+  }
+}

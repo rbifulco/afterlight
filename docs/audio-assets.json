@@ -1,0 +1,200 @@
+[
+  {
+    "id": "rain-street",
+    "channels": 2,
+    "seconds": 23.82,
+    "leadingTrimSeconds": 0.0,
+    "peakDbFS": -13.88,
+    "rmsDbFS": -30.86,
+    "loopBoundaryDelta": 0.053108,
+    "bytes": 382057,
+    "sha256": "9704a232c208d2ab4c78442fa2dc4f7de93fdcd30382d7819c9cfd14ca51f256"
+  },
+  {
+    "id": "city-air",
+    "channels": 2,
+    "seconds": 23.82,
+    "leadingTrimSeconds": 0.0,
+    "peakDbFS": -11.48,
+    "rmsDbFS": -24.8,
+    "loopBoundaryDelta": 0.002331,
+    "bytes": 382057,
+    "sha256": "3ac958c018d18555210f98f79d6d71e36c6ee32076561951c21b373e6eb8bfaf"
+  },
+  {
+    "id": "awning-rain",
+    "channels": 1,
+    "seconds": 13.82,
+    "leadingTrimSeconds": 0.0,
+    "peakDbFS": -5.49,
+    "rmsDbFS": -32.12,
+    "loopBoundaryDelta": 0.014623,
+    "bytes": 222397,
+    "sha256": "041faa4349f6f95e863c3b0645a0bad9dcc2f9122887f46e5e7d0c950ec2e93f"
+  },
+  {
+    "id": "gutter-water",
+    "channels": 1,
+    "seconds": 12.82,
+    "leadingTrimSeconds": 0.0,
+    "peakDbFS": -5.46,
+    "rmsDbFS": -30.07,
+    "loopBoundaryDelta": 0.03126,
+    "bytes": 206096,
+    "sha256": "0cfd2f02ac853e303068ba2077ca342891ddadaf7da574d03d3c6685caa3c3f9"
+  },
+  {
+    "id": "noodle-kitchen",
+    "channels": 1,
+    "seconds": 17.82,
+    "leadingTrimSeconds": 0.0,
+    "peakDbFS": -5.47,
+    "rmsDbFS": -31.09,
+    "loopBoundaryDelta": 0.021458,
+    "bytes": 286345,
+    "sha256": "fc35e04d83c05f12be78c4ddac8733fb648d1e74c2c77905cb6adaa857c7b96e"
+  },
+  {
+    "id": "shop-murmur",
+    "channels": 1,
+    "seconds": 17.82,
+    "leadingTrimSeconds": 0.0,
+    "peakDbFS": -5.48,
+    "rmsDbFS": -21.58,
+    "loopBoundaryDelta": 0.002439,
+    "bytes": 286345,
+    "sha256": "837e3628b232b026bcfd3af75e74981c36aac7b9d8f2ee4c2daab40b119e0d8d"
+  },
+  {
+    "id": "workshop-servo",
+    "channels": 1,
+    "seconds": 9.82,
+    "leadingTrimSeconds": 0.0,
+    "peakDbFS": -11.89,
+    "rmsDbFS": -27.42,
+    "loopBoundaryDelta": 0.020973,
+    "bytes": 158031,
+    "sha256": "0dcc7e7aef9c9a94080c5bedb30040811e71bf46f8956b2423a07963c73b906a"
+  },
+  {
+    "id": "projector-hum",
+    "channels": 1,
+    "seconds": 11.82,
+    "leadingTrimSeconds": 0.0,
+    "peakDbFS": -12.76,
+    "rmsDbFS": -28.46,
+    "loopBoundaryDelta": 0.000944,
+    "bytes": 190214,
+    "sha256": "e3f6293e2d7ea7118a2a9eba047a1ced8727303983d3a184d0e886343732ea15"
+  },
+  {
+    "id": "metro-roll",
+    "channels": 1,
+    "seconds": 13.82,
+    "leadingTrimSeconds": 0.0,
+    "peakDbFS": -5.49,
+    "rmsDbFS": -25.73,
+    "loopBoundaryDelta": 0.002934,
+    "bytes": 222397,
+    "sha256": "e04fd387d37779f48059a8c7218751b8da2a4f0f5f9f174d847320db66e001da"
+  },
+  {
+    "id": "wet-tires",
+    "channels": 1,
+    "seconds": 9.82,
+    "leadingTrimSeconds": 0.0,
+    "peakDbFS": -11.09,
+    "rmsDbFS": -28.29,
+    "loopBoundaryDelta": 0.004745,
+    "bytes": 158031,
+    "sha256": "b834f515d7e235b03bf5958e6f41c80b5e9e3f926b2439d5d9c1a057c34d1d16"
+  },
+  {
+    "id": "cab-idle",
+    "channels": 1,
+    "seconds": 11.82,
+    "leadingTrimSeconds": 0.0,
+    "peakDbFS": -12.47,
+    "rmsDbFS": -23.19,
+    "loopBoundaryDelta": 0.000666,
+    "bytes": 190214,
+    "sha256": "9ef5564fafc656f7d330fb9dc631bf8860c40645dfed3549b07decaf046db369"
+  },
+  {
+    "id": "boot-wet-a",
+    "channels": 1,
+    "seconds": 1.022,
+    "leadingTrimSeconds": 0.1776,
+    "peakDbFS": -5.51,
+    "rmsDbFS": -33.63,
+    "loopBoundaryDelta": null,
+    "bytes": 17597,
+    "sha256": "0dafb7dda655eb5966107afe149d42da0d6006d68ade1ede195226d460c8500d"
+  },
+  {
+    "id": "boot-wet-b",
+    "channels": 1,
+    "seconds": 1.2,
+    "leadingTrimSeconds": 0.0,
+    "peakDbFS": -5.48,
+    "rmsDbFS": -30.21,
+    "loopBoundaryDelta": null,
+    "bytes": 20105,
+    "sha256": "55ab7025896490f702372de01dafaa07f7d9177f64df2bb2d688127c1b96f1bd"
+  },
+  {
+    "id": "wiper-sweep",
+    "channels": 1,
+    "seconds": 1.68,
+    "leadingTrimSeconds": 0.0,
+    "peakDbFS": -8.77,
+    "rmsDbFS": -25.32,
+    "loopBoundaryDelta": null,
+    "bytes": 28046,
+    "sha256": "0b14b0989e2df87308fd21b7d807119faf63032cabe883216971c54261349686"
+  },
+  {
+    "id": "cup-set-down",
+    "channels": 1,
+    "seconds": 1.48,
+    "leadingTrimSeconds": 0.0,
+    "peakDbFS": -5.5,
+    "rmsDbFS": -38.58,
+    "loopBoundaryDelta": null,
+    "bytes": 24702,
+    "sha256": "97a8f038a4f4e335c251f0072959080c77b35e188b45534cd79ad23a533b7173"
+  },
+  {
+    "id": "station-pa",
+    "channels": 1,
+    "seconds": 8.0,
+    "leadingTrimSeconds": 0.0,
+    "peakDbFS": -14.24,
+    "rmsDbFS": -25.37,
+    "loopBoundaryDelta": null,
+    "bytes": 129192,
+    "sha256": "56d9b3034d6b95c43ec0061d4e3e3b250a0423afaad8dead783d4d474392f445"
+  },
+  {
+    "id": "alley-door",
+    "channels": 1,
+    "seconds": 3.0,
+    "leadingTrimSeconds": 0.0,
+    "peakDbFS": -5.23,
+    "rmsDbFS": -31.0,
+    "loopBoundaryDelta": null,
+    "bytes": 48944,
+    "sha256": "5fa8a8e593c2a62697b730e883e299134f2ae7fcb356470881f9ee0773f76af9"
+  },
+  {
+    "id": "radio-jazz",
+    "channels": 1,
+    "seconds": 21.82,
+    "leadingTrimSeconds": 0.0,
+    "peakDbFS": -9.55,
+    "rmsDbFS": -23.62,
+    "loopBoundaryDelta": 0.002142,
+    "bytes": 350292,
+    "sha256": "3643700148eeb7c1187c024f5eda2e7b25f620642eb8b1ef4ab54bc3486cafe8"
+  }
+]

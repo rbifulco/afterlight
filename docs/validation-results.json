@@ -1,0 +1,301 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "check": "production-idle",
+      "data": {
+        "fps": 69,
+        "frameMs": 12.985833333333357,
+        "position": {
+          "x": 0,
+          "z": 5
+        },
+        "target": {
+          "x": 0,
+          "z": 5
+        },
+        "speed": 0,
+        "heading": 3.141592653589793,
+        "yaw": 0.28,
+        "pitch": 0.43,
+        "distance": 45,
+        "moveCount": 0,
+        "orbitCount": 0,
+        "zoomCount": 0,
+        "elapsed": 76.8674499999909,
+        "quality": "HIGH",
+        "calls": 887,
+        "triangles": 496933,
+        "assetsLoaded": true,
+        "walkEvidence": {
+          "peakSpeed": 0,
+          "maxLegSwing": 0,
+          "lastHeading": 3.141592653589793
+        },
+        "frameP95": 17.59999999999127,
+        "trainX": 5.744630000023671,
+        "joints": {
+          "leftLeg": 0,
+          "rightLeg": 0,
+          "coat": 0.07332930754999442
+        }
+      }
+    },
+    {
+      "check": "production-arrival",
+      "data": {
+        "fps": 95,
+        "frameMs": 10.277499999999964,
+        "position": {
+          "x": 5.663718682027269,
+          "z": -11.894506555893642
+        },
+        "target": {
+          "x": 5.663718682027269,
+          "z": -11.894506555893642
+        },
+        "speed": 0,
+        "heading": 2.8181268528344017,
+        "yaw": 0.28,
+        "pitch": 0.43000000000000005,
+        "distance": 45,
+        "moveCount": 1,
+        "orbitCount": 0,
+        "zoomCount": 0,
+        "elapsed": 118.22574999999404,
+        "quality": "HIGH",
+        "calls": 874,
+        "triangles": 496695,
+        "assetsLoaded": true,
+        "walkEvidence": {
+          "peakSpeed": 2.9000000000000004,
+          "maxLegSwing": 0.5299998818495248,
+          "lastHeading": 2.818126852834401
+        },
+        "frameP95": 16.90000000000873,
+        "trainX": -2.9869499999844944,
+        "joints": {
+          "leftLeg": 0,
+          "rightLeg": 0,
+          "coat": 0.05417901448154286
+        }
+      }
+    },
+    {
+      "check": "production-orbit",
+      "data": {
+        "fps": 89,
+        "frameMs": 11.667500000000048,
+        "position": {
+          "x": 5.663718682027269,
+          "z": -11.894506555893642
+        },
+        "target": {
+          "x": 5.663718682027269,
+          "z": -11.894506555893642
+        },
+        "speed": 0,
+        "heading": 2.8181268528344017,
+        "yaw": -0.16999999999999998,
+        "pitch": 0.43999999999999995,
+        "distance": 45,
+        "moveCount": 1,
+        "orbitCount": 1,
+        "zoomCount": 0,
+        "elapsed": 178.68455000000367,
+        "quality": "HIGH",
+        "calls": 802,
+        "triangles": 399583,
+        "assetsLoaded": true,
+        "walkEvidence": {
+          "peakSpeed": 2.9000000000000004,
+          "maxLegSwing": 0.5299998818495248,
+          "lastHeading": 2.818126852834401
+        },
+        "frameP95": 17,
+        "trainX": -61.379830000009534,
+        "joints": {
+          "leftLeg": 0,
+          "rightLeg": 0,
+          "coat": 0.025506645044179897
+        }
+      }
+    },
+    {
+      "check": "production-zoom",
+      "data": {
+        "fps": 71,
+        "frameMs": 12.95041666666657,
+        "position": {
+          "x": 5.663718682027269,
+          "z": -11.894506555893642
+        },
+        "target": {
+          "x": 5.663718682027269,
+          "z": -11.894506555893642
+        },
+        "speed": 0,
+        "heading": 2.8181268528344017,
+        "yaw": -0.16999999999999998,
+        "pitch": 0.43999999999999995,
+        "distance": 36.842883888509185,
+        "moveCount": 1,
+        "orbitCount": 1,
+        "zoomCount": 4,
+        "elapsed": 213.54275000001041,
+        "quality": "HIGH",
+        "calls": 716,
+        "triangles": 399455,
+        "assetsLoaded": true,
+        "walkEvidence": {
+          "peakSpeed": 2.9000000000000004,
+          "maxLegSwing": 0.5299998818495248,
+          "lastHeading": 2.818126852834401
+        },
+        "frameP95": 25,
+        "trainX": -53.21115000002708,
+        "joints": {
+          "leftLeg": 0,
+          "rightLeg": 0,
+          "coat": 0.02697051117306626
+        }
+      }
+    },
+    {
+      "check": "performance-mode",
+      "data": {
+        "fps": 119,
+        "frameMs": 8.507083333333382,
+        "position": {
+          "x": 5.663718682027269,
+          "z": -11.894506555893642
+        },
+        "target": {
+          "x": 5.663718682027269,
+          "z": -11.894506555893642
+        },
+        "speed": 0,
+        "heading": 2.8181268528344017,
+        "yaw": -0.16999999999999998,
+        "pitch": 0.43999999999999995,
+        "distance": 36.84288388850919,
+        "moveCount": 1,
+        "orbitCount": 1,
+        "zoomCount": 4,
+        "elapsed": 241.70945000001663,
+        "quality": "PERFORMANCE",
+        "calls": 478,
+        "triangles": 326184,
+        "assetsLoaded": true,
+        "walkEvidence": {
+          "peakSpeed": 2.9000000000000004,
+          "maxLegSwing": 0.5299998818495248,
+          "lastHeading": 2.818126852834401
+        },
+        "frameP95": 9.800000000017462,
+        "trainX": -27.644570000043238,
+        "joints": {
+          "leftLeg": 0,
+          "rightLeg": 0,
+          "coat": 0.025423965824390323
+        }
+      }
+    },
+    {
+      "check": "reset",
+      "data": {
+        "fps": 84,
+        "frameMs": 11.215000000000146,
+        "position": {
+          "x": 0,
+          "z": 5
+        },
+        "target": {
+          "x": 0,
+          "z": 5
+        },
+        "speed": 0,
+        "heading": 2.8181268528344017,
+        "yaw": 0.28,
+        "pitch": 0.42999999999999994,
+        "distance": 45,
+        "moveCount": 1,
+        "orbitCount": 1,
+        "zoomCount": 4,
+        "elapsed": 263.7010500000135,
+        "quality": "HIGH",
+        "calls": 874,
+        "triangles": 403957,
+        "assetsLoaded": true,
+        "walkEvidence": {
+          "peakSpeed": 2.9000000000000004,
+          "maxLegSwing": 0.5299998818495248,
+          "lastHeading": 2.818126852834401
+        },
+        "frameP95": 16.79999999998836,
+        "trainX": -85,
+        "joints": {
+          "leftLeg": 0,
+          "rightLeg": 0,
+          "coat": 0.02542811504387885
+        }
+      }
+    },
+    {
+      "check": "outside-area-message",
+      "message": "Stay in the crossing \u2014 the city continues beyond."
+    },
+    {
+      "check": "hide-ui",
+      "headingVisible": false
+    },
+    {
+      "check": "restore-ui",
+      "headingVisible": true
+    },
+    {
+      "check": "boundary-still-at-start",
+      "data": {
+        "fps": 77,
+        "frameMs": 13.334583333333285,
+        "position": {
+          "x": 0,
+          "z": 5
+        },
+        "target": {
+          "x": 0,
+          "z": 5
+        },
+        "speed": 0,
+        "heading": 2.8181268528344017,
+        "yaw": 0.28,
+        "pitch": 0.42999999999999994,
+        "distance": 45,
+        "moveCount": 1,
+        "orbitCount": 1,
+        "zoomCount": 4,
+        "elapsed": 340.32484999995586,
+        "quality": "HIGH",
+        "calls": 882,
+        "triangles": 404029,
+        "assetsLoaded": true,
+        "walkEvidence": {
+          "peakSpeed": 2.9000000000000004,
+          "maxLegSwing": 0.5299998818495248,
+          "lastHeading": 2.818126852834401
+        },
+        "frameP95": 25.399999999965075,
+        "trainX": -85,
+        "joints": {
+          "leftLeg": 0,
+          "rightLeg": 0,
+          "coat": 0.07187803727905573
+        }
+      }
+    },
+    {
+      "check": "console-errors",
+      "logs": []
+    }
+  ]
+}

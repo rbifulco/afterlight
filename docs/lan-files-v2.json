@@ -1,0 +1,98 @@
+[
+  {
+    "path": "assets/asphalt.png",
+    "status": 200,
+    "bytes": 3428586,
+    "sha256Matches": true
+  },
+  {
+    "path": "assets/coat-fabric.png",
+    "status": 200,
+    "bytes": 3414850,
+    "sha256Matches": true
+  },
+  {
+    "path": "assets/concrete.png",
+    "status": 200,
+    "bytes": 3626236,
+    "sha256Matches": true
+  },
+  {
+    "path": "assets/courier.glb",
+    "status": 200,
+    "bytes": 363272,
+    "sha256Matches": true
+  },
+  {
+    "path": "assets/delivery-scooter.glb",
+    "status": 200,
+    "bytes": 615796,
+    "sha256Matches": true
+  },
+  {
+    "path": "assets/index-Bytttbhz.css",
+    "status": 200,
+    "bytes": 5408,
+    "sha256Matches": true
+  },
+  {
+    "path": "assets/index-CZMjXTlm.js",
+    "status": 200,
+    "bytes": 702033,
+    "sha256Matches": true
+  },
+  {
+    "path": "assets/kaen-ad.png",
+    "status": 200,
+    "bytes": 2365387,
+    "sha256Matches": true
+  },
+  {
+    "path": "assets/noodle-shop.png",
+    "status": 200,
+    "bytes": 1989640,
+    "sha256Matches": true
+  },
+  {
+    "path": "assets/nova-ad.png",
+    "status": 200,
+    "bytes": 2441417,
+    "sha256Matches": true
+  },
+  {
+    "path": "assets/sedan.glb",
+    "status": 200,
+    "bytes": 1406028,
+    "sha256Matches": true
+  },
+  {
+    "path": "assets/service-android.glb",
+    "status": 200,
+    "bytes": 877176,
+    "sha256Matches": true
+  },
+  {
+    "path": "assets/service-van.glb",
+    "status": 200,
+    "bytes": 1283568,
+    "sha256Matches": true
+  },
+  {
+    "path": "assets/windows.png",
+    "status": 200,
+    "bytes": 2139889,
+    "sha256Matches": true
+  },
+  {
+    "path": "assets/workshop-wall.png",
+    "status": 200,
+    "bytes": 2645720,
+    "sha256Matches": true
+  },
+  {
+    "path": "index.html",
+    "status": 200,
+    "bytes": 1807,
+    "sha256Matches": true
+  }
+]

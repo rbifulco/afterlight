@@ -1,0 +1,128 @@
+{
+  "takeover": {
+    "fps": 84,
+    "frameMs": 11.840416666666473,
+    "position": {
+      "x": 4.85,
+      "z": 7.3
+    },
+    "target": {
+      "x": 4.85,
+      "z": 7.3
+    },
+    "speed": 0,
+    "heading": 1.1279790385519746,
+    "yaw": 0.14,
+    "pitch": 0.18,
+    "distance": 18,
+    "moveCount": 0,
+    "orbitCount": 0,
+    "zoomCount": 0,
+    "elapsed": 335.9036999999724,
+    "quality": "HIGH",
+    "contactShading": true,
+    "calls": 1216,
+    "triangles": 1617921,
+    "assetsLoaded": true,
+    "interactions": {
+      "selected": "terminal",
+      "pending": null,
+      "rerouted": true,
+      "calibration": false,
+      "calibrationCount": 0,
+      "calibrationAngles": [
+        0.15,
+        -0.45,
+        0.2
+      ],
+      "hologramCount": 2,
+      "hologramTime": 335.9036999999724,
+      "stock": 8,
+      "collected": 0,
+      "flavour": "LYCHEE",
+      "broth": false,
+      "bellCount": 0,
+      "adNoticed": true,
+      "actionCount": 1,
+      "trunkOpen": false,
+      "parcelDelivered": false,
+      "cargoAngle": 0
+    },
+    "routeRemaining": 0,
+    "walkEvidence": {
+      "peakSpeed": 2.899999986697173,
+      "maxLegSwing": 0.5298769555129272,
+      "lastHeading": 1.1279790764783773
+    },
+    "frameP95": 17.100000000034925,
+    "trainX": -48.85554999995858,
+    "joints": {
+      "leftLeg": 0,
+      "rightLeg": 0,
+      "coat": 0.025074786163438563
+    }
+  },
+  "restored": {
+    "fps": 104,
+    "frameMs": 9.610000000000097,
+    "position": {
+      "x": 0,
+      "z": 5
+    },
+    "target": {
+      "x": 0,
+      "z": 5
+    },
+    "speed": 0,
+    "heading": 1.1279790385519746,
+    "yaw": 0.2,
+    "pitch": 0.16,
+    "distance": 30,
+    "moveCount": 0,
+    "orbitCount": 0,
+    "zoomCount": 0,
+    "elapsed": 359.0310999999637,
+    "quality": "HIGH",
+    "contactShading": false,
+    "calls": 886,
+    "triangles": 1184708,
+    "assetsLoaded": true,
+    "interactions": {
+      "selected": null,
+      "pending": null,
+      "rerouted": false,
+      "calibration": false,
+      "calibrationCount": 0,
+      "calibrationAngles": [
+        0.15,
+        -0.45,
+        0.2
+      ],
+      "hologramCount": 2,
+      "hologramTime": 359.0310999999637,
+      "stock": 8,
+      "collected": 0,
+      "flavour": "LYCHEE",
+      "broth": false,
+      "bellCount": 0,
+      "adNoticed": true,
+      "actionCount": 2,
+      "trunkOpen": false,
+      "parcelDelivered": false,
+      "cargoAngle": 0
+    },
+    "routeRemaining": 0,
+    "walkEvidence": {
+      "peakSpeed": 2.899999986697173,
+      "maxLegSwing": 0.5298769555129272,
+      "lastHeading": 1.1279790764783773
+    },
+    "frameP95": 16.70000000001164,
+    "trainX": -8.546649999945572,
+    "joints": {
+      "leftLeg": 0,
+      "rightLeg": 0,
+      "coat": 0.06756553775508911
+    }
+  }
+}
