@@ -2,16 +2,20 @@
 
 An original Three.js cyberpunk neighborhood at 02:13: rain, translucent holographic advertising, a late-night noodle bar, a cybernetics workshop, and an elevated metro. The street carries on without asking the visitor to trigger it.
 
+![Afterlight at night](docs/afterlight.png)
+
 ## Public site
 
-[Explore Afterlight](https://afterlight-cyberpunk.nickfromlater.chatgpt.site). The hosted city includes all models and audio; it does not depend on the local Mac.
+[Explore Afterlight](https://afterlight-cyberpunk.nickfromlater.chatgpt.site) · [Source on GitHub](https://github.com/nickfromlater/afterlight). The hosted city includes all models and audio; it does not depend on the local Mac.
 
 For Sites updates, `npm run build:sites` retains the normal LAN build and stages a Worker plus static assets in `.sites-build`. Package that directory with the Sites hosting helper. The project binding is in `.openai/hosting.json`.
 
 ## Run locally
 
 ```sh
-npm install
+git clone https://github.com/nickfromlater/afterlight.git
+cd afterlight
+npm ci
 npm run build
 npm run serve
 ```
