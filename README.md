@@ -58,6 +58,8 @@ Sources and image-generation prompts: [docs/ASSETS.md](docs/ASSETS.md). Rebuild 
 
 ## Verification and rendering
 
+The project's process, lessons, and reusable workflow are documented in [Afterlight: from a convincing image to a convincing place](docs/workflows/afterlight-process.md). The portable [Dream Loop Production skill](skills/dream-loop-production/SKILL.md) covers art direction, assets, motion, sound, camera capture, verification, and delivery.
+
 `npm test` checks navigation around vehicle footprints, reachability between clear street destinations, and rejection of blocked destinations. Browser/LAN evidence is recorded in [docs/VALIDATION.md](docs/VALIDATION.md).
 
 Residents use continuous skinned surfaces and independent skeletons. Rigid vehicle and android parts are combined by material while transparent glazing stays separate. Rain, kitchen vapor, runoff, and vent plumes use GPU animation; static geometry is grouped by material. Static hologram artwork is uploaded once while scan lines and distortion animate on the GPU. Native-resolution rendering uses FXAA to smooth edges. The wet road uses a 768px planar reflection (512px in light mode), and metals/glass use an environment captured from the actual city. High quality adds half-resolution ambient occlusion for close views. Frame rate depends on device, viewport, browser, and other running applications.

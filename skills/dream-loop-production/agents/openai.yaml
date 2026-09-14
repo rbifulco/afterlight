@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dream Loop Production"
+  short_description: "Build living scenes and reproducible media"
+  default_prompt: "Use $dream-loop-production to build or refine this interactive scene, verify its visual and behavioral quality, and deliver the requested result."
