@@ -1,11 +1,12 @@
+import { assetUrl } from './asset-url.js';
 import * as THREE from 'three';
 import { batchStaticModel } from './static-model.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 export async function buildVehicles(scene) {
   const loader = new GLTFLoader();
-  const wear=new THREE.TextureLoader().load('/assets/concrete.png');wear.wrapS=wear.wrapT=THREE.RepeatWrapping;
-  const [sedan, van, scooter] = await Promise.all([loader.loadAsync('/assets/sedan.glb'), loader.loadAsync('/assets/service-van.glb'), loader.loadAsync('/assets/delivery-scooter.glb')]);
+  const wear=new THREE.TextureLoader().load(assetUrl('concrete.png'));wear.wrapS=wear.wrapT=THREE.RepeatWrapping;
+  const [sedan, van, scooter] = await Promise.all([loader.loadAsync(assetUrl('sedan.glb')), loader.loadAsync(assetUrl('service-van.glb')), loader.loadAsync(assetUrl('delivery-scooter.glb'))]);
   const vehicles = [], obstacles = [];
   const lamp = new THREE.MeshBasicMaterial({color:0xd4f4ff,toneMapped:false});
   function add(source, x, z, angle, color, scale=1.05) {
@@ -53,7 +54,7 @@ export async function buildVehicles(scene) {
       const head=new THREE.SpotLight(0xc8e5ff,34,12,.48,.7,1.4);head.position.set(side*.6,.7,2.43);head.target.position.set(side*.7,.06,10);car.add(head,head.target);
     }
   }
-  return {taxi,serviceVan,obstacles,get state(){return {trafficX:movingCar.position.x,trafficZ:movingCar.position.z,trafficVisible:movingCar.visible,wiperAngle:wipers[0].rotation.z,obstacles}},update(t,dt){
+  return {reviewVehicles:vehicles.map(({root})=>root),taxi,serviceVan,obstacles,get state(){return {trafficX:movingCar.position.x,trafficZ:movingCar.position.z,trafficVisible:movingCar.visible,wiperAngle:wipers[0].rotation.z,obstacles}},update(t,dt){
     lidPivot.rotation.x=0;
     const progress=((t+22)%trafficPeriod)*2.2/routeLength;
     movingCar.visible=progress<=1;

@@ -1,9 +1,10 @@
+import { assetUrl } from './asset-url.js';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
 export function buildAtmosphere(scene,city){
   const cloths=[],residents=[],lightRooms=[];
-  const textile=new THREE.TextureLoader().load('/assets/coat-fabric.png');textile.colorSpace=THREE.SRGBColorSpace;
+  const textile=new THREE.TextureLoader().load(assetUrl('coat-fabric.png'));textile.colorSpace=THREE.SRGBColorSpace;
   const fabric=(color)=>new THREE.MeshStandardMaterial({color,map:textile,bumpMap:textile,bumpScale:.014,roughness:.92,side:THREE.DoubleSide});
   const indigo=fabric(0x33424e),linen=fabric(0xada493),plum=fabric(0x64505c),olive=fabric(0x646b59);
   const steel=new THREE.MeshStandardMaterial({color:0x3c4c51,metalness:.72,roughness:.36});

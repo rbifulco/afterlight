@@ -22,7 +22,9 @@ const server = http.createServer(async (req, res) => {
     }
     const info = await stat(file);
     if (!info.isFile()) throw new Error('Not a file');
-    res.writeHead(200, { 'Content-Type': types[extname(file)] || 'application/octet-stream', 'Content-Length': info.size, 'Cache-Control': 'no-cache', 'X-Content-Type-Options': 'nosniff' });
+    const reviewHeaders = pathname === '/.well-known/spatial-review.json'
+      ? { 'Access-Control-Allow-Origin': 'https://spatial-review.alterno.dev' } : {};
+    res.writeHead(200, { ...reviewHeaders, 'Content-Type': types[extname(file)] || 'application/octet-stream', 'Content-Length': info.size, 'Cache-Control': 'no-cache', 'X-Content-Type-Options': 'nosniff' });
     if (req.method === 'HEAD') res.end();
     else createReadStream(file).on('error', () => res.destroy()).pipe(res);
   } catch {

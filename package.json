@@ -12,6 +12,7 @@
     "build:sites": "npm run build && node scripts/stage-sites.mjs"
   },
   "dependencies": {
+    "@alterno-dev/spatial-review": "0.7.0",
     "three": "^0.180.0"
   },
   "devDependencies": {

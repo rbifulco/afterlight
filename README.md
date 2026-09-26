@@ -24,6 +24,28 @@ The production server binds `0.0.0.0:4173`. Open `http://<this-Mac-LAN-IP>:4173`
 
 Requires Node.js 20.19+ or 22.12+; built with Node 24.
 
+## Alterno Spatial Review
+
+After building and starting `npm run serve`, enter `http://localhost:4173/` in
+[Alterno Spatial Review](https://spatial-review.alterno.dev). Discovery at
+`/.well-known/spatial-review.json` points to `/spatial-review.html`, which prepares
+a fixed snapshot automatically. Keep the capture page open while reviewing.
+
+The integration uses `@alterno-dev/spatial-review` 0.7.0 and exports 21 actors:
+seven vehicles, eight residents, the courier, service android, resident props,
+road, district context, and shop/street-equipment context. It supports Scene and
+Asset review. Buildings and shop equipment retain the source's coarse batching;
+they are context groups rather than individually movable objects. The ordinary
+city page does not import the SDK or start a review bridge.
+
+Only the official editor at `https://spatial-review.alterno.dev` and the capture
+page's own origin may request registered geometry, materials, source references,
+texture URLs, and texture bytes. Cross-origin loopback editors are disabled.
+This change has not been deployed to the public site.
+
+See [integration scope and verification](docs/SPATIAL_REVIEW.md) for source
+mappings, rendering approximations, and the remaining browser acceptance checks.
+
 ## Explore
 
 Click the street to walk, drag to look around, and scroll to zoom. On touch devices, tap, drag, and pinch. The courier routes around parked vehicles and street equipment. **R** resets the view and position; **H** hides the remaining controls; **Escape** reveals them. The small control strip fades after inactivity. Quality: light lowers rendering cost; touch devices start in this mode with a wider view.
