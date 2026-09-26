@@ -97,7 +97,7 @@ export function createSoundscape(){
       master.connect(highpass);highpass.connect(compressor);compressor.connect(analyser);analyser.connect(ctx.destination);
       reverb=ctx.createConvolver();reverb.buffer=impulse();reverbReturn=ctx.createGain();reverbReturn.gain.value=.32;
       const reverbLP=ctx.createBiquadFilter();reverbLP.type='lowpass';reverbLP.frequency.value=3100;reverb.connect(reverbLP);reverbLP.connect(reverbReturn);reverbReturn.connect(master);
-      await Promise.all(FILES.map(async id=>{try{const response=await fetch(`/audio/${id}.mp3`);if(!response.ok)throw new Error('Unavailable audio');const b=await ctx.decodeAudioData(await response.arrayBuffer());buffers.set(id,b)}catch{loadErrors.push(id)}}));
+      await Promise.all(FILES.map(async id=>{try{const response=await fetch(`${import.meta.env?.BASE_URL ?? '/'}audio/${id}.mp3`);if(!response.ok)throw new Error('Unavailable audio');const b=await ctx.decodeAudioData(await response.arrayBuffer());buffers.set(id,b)}catch{loadErrors.push(id)}}));
       if(!buffers.has('rain-street'))throw new Error('Rain layer unavailable');
       assemble();ready=true;started=true;loading=false;lastT=null;label();fade(1.8);
       if(document.hidden)await ctx.suspend();

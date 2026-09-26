@@ -21,8 +21,8 @@ Static discovery keeps review code out of the ordinary page. The production
 server and Sites Worker permit the official editor to fetch only the discovery
 document via CORS. Existing framing headers were not changed (the source server
 and Worker do not set anti-framing headers). A hosting platform may add headers;
-that requires deployment verification. No deployment or public-site change was
-performed.
+that requires deployment verification. The existing Sites-hosted version was
+not changed; the GitHub Pages fork is deployed separately.
 
 ## Local workflow
 
@@ -117,8 +117,11 @@ discovery. Discovery returned the official-editor CORS header, and a representat
 Sites artifact contains the discovery document. These checks do not establish
 the deployed host's behavior or browser texture transfer.
 
-Still unverified: ordinary-page visual/interaction comparison, real editor
-discovery from the ordinary URL, representative Scene and Asset appearance,
-texture readiness and byte transfer, feedback export/source-application/refresh,
-and hosted framing/discovery responses. No end-to-end browser acceptance or
-production deployment is claimed.
+The GitHub Pages build at `https://rbifulco.github.io/afterlight/` passed its
+workflow tests and built under `/afterlight/`. The ordinary city rendered in a
+live browser, the hosted capture reported 21 actors, the discovery JSON returned
+200 with CORS, and the official editor opened the imported Scene. Audio paths
+use the Pages base path as well. The original Sites deployment is independent.
+
+Still unverified: exhaustive Scene and Asset appearance, texture byte transfer,
+and a human feedback export/source-application/refresh round trip.

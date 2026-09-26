@@ -41,7 +41,10 @@ city page does not import the SDK or start a review bridge.
 Only the official editor at `https://spatial-review.alterno.dev` and the capture
 page's own origin may request registered geometry, materials, source references,
 texture URLs, and texture bytes. Cross-origin loopback editors are disabled.
-This change has not been deployed to the public site.
+
+The integrated build is published on [GitHub Pages](https://rbifulco.github.io/afterlight/).
+[Open it in Spatial Review](https://spatial-review.alterno.dev/review?site=https%3A%2F%2Frbifulco.github.io%2Fafterlight%2F).
+The existing Sites-hosted city is a separate deployment.
 
 See [integration scope and verification](docs/SPATIAL_REVIEW.md) for source
 mappings, rendering approximations, and the remaining browser acceptance checks.
