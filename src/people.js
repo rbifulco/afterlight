@@ -95,5 +95,5 @@ export function buildPeople(scene,source){
     const cook=actors.find(a=>a.role==='cook');dummy.position.set(0,-.35,.045);dummy.rotation.set(0,0,.4);dummy.updateMatrix();chopstick.matrixAutoUpdate=false;chopstick.matrix.multiplyMatrices(cook.joints.elbow_R.matrixWorld,dummy.matrix);
   }
   update(0,0);
-  return {update,get state(){return {count:actors.length,walkers:actors.filter(a=>a.route).map(a=>({id:a.id,x:a.rig.position.x,z:a.rig.position.z,distance:a.travel,paused:a.paused})),cookStir:actors.find(a=>a.role==='cook').joints.elbow_R.rotation.x,patronSip:actors[0].joints.elbow_R.rotation.x}}};
+  return {reviewActors:actors,update,get state(){return {count:actors.length,walkers:actors.filter(a=>a.route).map(a=>({id:a.id,x:a.rig.position.x,z:a.rig.position.z,distance:a.travel,paused:a.paused})),cookStir:actors.find(a=>a.role==='cook').joints.elbow_R.rotation.x,patronSip:actors[0].joints.elbow_R.rotation.x}}};
 }

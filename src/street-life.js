@@ -1,3 +1,4 @@
+import { assetUrl } from './asset-url.js';
 import * as THREE from 'three';
 import { createHolographicScreen } from './hologram.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
@@ -23,8 +24,8 @@ export function buildStreetLife(scene,city,vehicles) {
   function base(ctx,c,color='#06181d'){ctx.fillStyle=color;ctx.fillRect(0,0,c.width,c.height)}
   function scanlines(ctx,c,t){ctx.fillStyle='#050a1240';for(let y=0;y<c.height;y+=5)ctx.fillRect(0,y,c.width,1);ctx.fillStyle='#91dfff0a';ctx.fillRect(0,(t*65)%c.height,c.width,12)}
   let time=0;
-  const novaImage=new Image();novaImage.src='/assets/nova-ad.png';
-  const adImage=new Image();adImage.src='/assets/kaen-ad.png';
+  const novaImage=new Image();novaImage.src=assetUrl('nova-ad.png');
+  const adImage=new Image();adImage.src=assetUrl('kaen-ad.png');
   // Floating light fields have projector bars instead of opaque billboard housings.
   for(const [x,y,z,w,h] of [[-14,8.25,2.85,4.4,6.4],[13.9,8.30,-.42,4.9,6.7]]){
     const emitterMaterial=x<0?cyan:pink;
@@ -39,7 +40,7 @@ export function buildStreetLife(scene,city,vehicles) {
 
   // Baked rear-wall detail sits behind real counters, patrons and work surfaces.
   const textureLoader=new THREE.TextureLoader();
-  for(const [url,p,w,h]of[['/assets/noodle-shop.png',[-13,1.75,-1.12],9.35,2.4],['/assets/workshop-wall.png',[13,1.65,-4.58],9.4,2.4]]){const texture=textureLoader.load(url);texture.colorSpace=THREE.SRGBColorSpace;texture.anisotropy=4;mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map:texture,color:new THREE.Color(1.4,1.25,1.1)}),p,[1,1,1],[0,0,0],false);}
+  for(const [url,p,w,h]of[[assetUrl('noodle-shop.png'),[-13,1.75,-1.12],9.35,2.4],[assetUrl('workshop-wall.png'),[13,1.65,-4.58],9.4,2.4]]){const texture=textureLoader.load(url);texture.colorSpace=THREE.SRGBColorSpace;texture.anisotropy=4;mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map:texture,color:new THREE.Color(1.4,1.25,1.1)}),p,[1,1,1],[0,0,0],false);}
   // A physical noodle bar: open volume, counter, kitchen, crockery and stools.
   box([-13,.29,.1],[9.8,.09,3.9],black);box([-13,1.6,-1.25],[9.65,2.8,.1],cream);
   for(let x=-17.5;x<-8.6;x+=.55){box([x,1.6,-1.18],[.018,2.7,.02],steel)}
