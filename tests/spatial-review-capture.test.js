@@ -40,6 +40,18 @@ for (const assetId of ['district-context','street-life-context','taxi','resident
   assert.equal(result?.ok,true, `${assetId} must fit the negotiated transfer budget`);
   assert.ok(result.asset.geometries.length>0);
 }
+// 0.9.0 must carry the city's visible window RGB and UV texture evidence in
+// both profiles, without globally enabling colors on unrelated materials.
+for (const profile of ['scene', 'review']) {
+  const requestId = `appearance-${profile}`;
+  send({type:'alterno:spatial-review:asset-request',requestId,buildId:'smoke-test',assetId:'district-context',profile});
+  await new Promise(resolve=>setTimeout(resolve,20));
+  const asset=messages.find(message=>message.requestId===requestId)?.asset;
+  assert.ok(asset.geometries.some(entry=>entry.geometry.colors?.length), `${profile} retains visible window RGB`);
+  assert.ok(asset.geometries.some(entry=>entry.geometry.uvs?.length), `${profile} retains UVs`);
+  assert.ok(asset.materials.some(material=>material.vertexColors), `${profile} retains the source color opt-in`);
+  assert.ok(asset.materials.some(material=>material.maps?.length), `${profile} retains supported maps`);
+}
 listeners.get('message')({source:peer,origin:'https://untrusted.example',data:{type:'alterno:spatial-review:request',requestId:'denied'}});
 assert.equal(messages.find(message=>message.requestId==='denied')?.type,'spatial-review:connection-rejected');
 listeners.get('pagehide')({persisted:false});
