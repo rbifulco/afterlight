@@ -39,8 +39,8 @@ not changed; the GitHub Pages fork is deployed separately.
 
 Browser local-network access restrictions may require the browser's local-network
 permission. If embedding is blocked by browser or hosting policy, use the editor's
-popup capture workflow. Neither path has been accepted in a real browser in this
-change.
+popup capture workflow. The hosted embedding path was accepted during the SDK 0.9.0 checks below;
+local-network and popup permission behavior remain browser-dependent.
 
 ## Inventory and source mapping
 
@@ -123,8 +123,9 @@ live browser, the hosted capture reported 21 actors, the discovery JSON returned
 200 with CORS, and the official editor opened the imported Scene. Audio paths
 use the Pages base path as well. The original Sites deployment is independent.
 
-Still unverified: exhaustive Scene and Asset appearance, texture byte transfer,
-and a human feedback export/source-application/refresh round trip.
+The SDK 0.9.0 production checks below supersede the earlier texture-transfer
+and representative Scene/Asset verification gaps. Exhaustive appearance and a
+human feedback export/source-application/refresh round trip remain unverified.
 
 
 ## SDK 0.9.0 migration — 2026-10-24
@@ -161,3 +162,73 @@ per image resource, not once per mesh or material slot. Actual GPU allocation
 varies with format and mipmaps; no process-memory claim is inferred from the
 geometry budget. Lighting, bloom, reflections, fog, shader wear and hologram
 motion remain approximations, so use the ordinary site for final appearance.
+
+### Published 0.9.0 acceptance
+
+The migration commit `5c4a0393230f2a5ee47c8d37b64db3454a825954` passed the existing
+[Pages workflow](https://github.com/rbifulco/afterlight/actions/runs/40122363118).
+The ordinary URL is https://rbifulco.github.io/afterlight/. The live discovery and
+capture HTML return successfully and load the rebuilt `review-DLzLB_XW.js` entry.
+The capture reports build `afterlight-eab836df1d8f8e57` and all 21 actors.
+The npm lockfile installs SDK/protocol 0.9.0 and Three.js 0.180.0. No source,
+asset, renderer, origin policy, control, or deployment-workflow changes were made.
+
+A comparison with SDK 0.8.0 using the same Three.js module and unchanged source
+builders found identical actor records, asset IDs, node hierarchies and source
+references, material IDs, geometry IDs, and transforms: 21 actors/assets,
+588 component nodes, 224 material definitions, and 264 geometry definitions
+across the registered assets. Counts are per-asset definitions, not a claim that
+all source resources are unique. The complete existing nine-test suite and the
+production build with `PAGES_BASE=/afterlight/` pass.
+
+Starting from the ordinary URL, the current hosted editor successfully imports
+the capture and renders the district in Scene and Asset. Scene reports 21/21
+asset meshes and was checked with "Nothing selected"; Asset shows the same
+district with 256 nodes, 78 materials, Geometry ready, and 61/61 texture slots
+ready. Component selection was cleared for appearance inspection. Window RGB,
+window/concrete maps, and sign artwork are present in both profiles. Scene and
+Asset use their own lighting and do not reproduce the website's night rendering.
+No navigation sequences are registered, so there is no authored Experience
+journey to verify. The shared editor shell still displays an Experience tab.
+
+The isolated Chromium test used software graphics. Full-rate editor interaction
+was slow; the successful inspection used a test-only 120 ms animation-frame
+callback delay at a 1200x800 viewport. This does not alter the deployed site or
+capture and is not a production performance measurement. The editor first probes
+a missing host-root discovery URL and logs its CORS failure, then connects using
+the successful project-scoped discovery URL. The direct published capture had
+zero JavaScript page errors. No feedback note was created; a write/export/source
+application round trip is not claimed.
+
+### Measured district resource costs
+
+The published `district-context` progressive metadata is part of a 13,879-byte
+catalog JSON sample. The subject uses 103 shared geometry definitions, 256 nodes,
+78 material definitions, and two source materials with vertex colors enabled.
+Both profiles retain 681,558 UV scalar values and 211,212 RGB scalar values.
+No material was enabled merely because its geometry has a color attribute.
+
+| Resource | Scene profile | Asset profile |
+| --- | ---: | ---: |
+| Actual negotiated numeric geometry buffers, including indices | 8,309,532 B | 12,398,880 B |
+| UV buffers, included above | 2,726,232 B | 2,726,232 B |
+| RGB buffers, included above | 844,848 B | 844,848 B |
+| Unique live texture resource IDs shared by both profiles | 51 | Same 51 |
+
+All 51 texture resources transferred and decoded as PNG. They occupy 61 material
+slots; shared resource IDs are counted once, including resources reused between
+Scene and Asset. This preserves existing sharing and does not assume that distinct
+source texture objects have identical sampling or image ownership.
+
+- Encoded texture transfer: **11,680,068 B** (about 11.14 MiB).
+- Decoded RGBA image storage: **69,442,336 B** (about 66.23 MiB), computed from
+  each decoded width and height, separately from numeric geometry buffers.
+- An illustrative uncompressed RGBA8 GPU allocation with a complete mip chain is
+  about **88.30 MiB** for those images. This is an estimate, not a driver-memory
+  measurement; actual formats, caches, and mip allocation can differ.
+
+Generated canvas PNG sizes can vary between browser captures. The existing
+64 MiB per-asset geometry transfer limit remains unchanged; it is not a cap on
+combined decoded image or GPU memory. Static shader approximations remain as
+listed above, including holograms, wear, reflections, atmospheric effects,
+bloom, fog, wind, and sound.
